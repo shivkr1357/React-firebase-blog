@@ -1,0 +1,15 @@
+{
+  "short_name": "Firebase Blog",
+  "name": "React Firebase Blog App",
+  "icons": [
+    {
+      "src": "",
+      "sizes": "",
+      "type": ""
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
