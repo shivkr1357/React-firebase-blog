@@ -30,15 +30,15 @@ const Search = styled("div")(({ theme }) => ({
   },
 }));
 
-const Icons = styled(Box)(({ theme }) => ({
-  display: "none",
-  alignItems: "center",
-  justifyContent: "center",
-  gap: "15px",
-  [theme.breakpoints.up("sm")]: {
-    display: "flex",
-  },
-}));
+// const Icons = styled(Box)(({ theme }) => ({
+//   display: "none",
+//   alignItems: "center",
+//   justifyContent: "center",
+//   gap: "15px",
+//   [theme.breakpoints.up("sm")]: {
+//     display: "flex",
+//   },
+// }));
 
 const Navbar = ({ isAuth, setIsAuth }) => {
   //   const [open, setOpen] = useState(false);

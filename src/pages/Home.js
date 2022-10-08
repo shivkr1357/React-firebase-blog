@@ -3,7 +3,7 @@
 // import Feed from "../components/Feed";
 // import Rightbar from "../components/Rightbar";
 import HomeComponent from "../components/HomeComponent";
-import Navbar from "../components/Navbar";
+// import Navbar from "../components/Navbar";
 
 const Home = () => {
   //   const [mode, setMode] = useState("light");

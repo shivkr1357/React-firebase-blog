@@ -4,7 +4,7 @@ import { auth, provider } from "../firebase-config";
 import { signInWithPopup } from "firebase/auth";
 
 import { useNavigate } from "react-router-dom";
-import { Button, Stack, Box, Typography } from "@mui/material";
+import { Stack, Box, Typography } from "@mui/material";
 
 const LoginComponent = ({ setIsAuth }) => {
   const navigate = useNavigate();
@@ -54,6 +54,7 @@ const LoginComponent = ({ setIsAuth }) => {
               height: "18px",
             }}
             src="google_logo.svg"
+            alt="Google Logo"
           />
         </Box>
         <Typography

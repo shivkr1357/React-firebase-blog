@@ -16,7 +16,7 @@ const HomeComponent = () => {
     };
 
     getPosts();
-  }, []);
+  }, [postCollectionRef]);
 
   return (
     <Box flex={4} sx={{ padding: { xs: "0", sm: "0px 20px " } }}>
