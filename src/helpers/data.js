@@ -1,0 +1,4 @@
+export const data = {
+  desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore vel atque voluptas unde. Ipsum eveniet ea nisi ut reiciendis tenetur tempora! Eligendi odio atque ipsam voluptatem quibusdam suscipit officia earum Illum esse animi eaque commodi nesciunt, iste molestiae consequuntur velit dolore sequi fugiat delectus tempora magnam amet earum perferendis autem, soluta doloribus at incidunt beatae natus nemo repellat nobis. Minima Explicabo est nobis in dolorem corporis totam! Enim saepe ad esse sapiente cum aspernatur optio commodi doloremque eius laudantium modi asperiores ex excepturi qui laboriosam sint accusamus id, vero illum.Repellat adipisci velit amet omnis reiciendis tenetur iure dolore accusantium, nostrum earum ratione, expedita eveniet, voluptatum ad consequuntur assumenda eius non quibusdam blanditiis rerum eos perspiciatis veritatis! Temporibus, consectetur minus. ",
+  date: new Date().now,
+};

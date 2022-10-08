@@ -9,11 +9,13 @@ import {
   Button,
   Stack,
 } from "@mui/material";
-
+import MenuIcon from "@mui/icons-material/Menu";
 // import SideDrawer from "./SideDrawer";
 // import { isAuthenticated, logout } from "../Helpers/auth";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase-config";
+import SideDrawer from "./SideDrawer";
+import { useState } from "react";
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -40,9 +42,9 @@ const Search = styled("div")(({ theme }) => ({
 //   },
 // }));
 
-const Navbar = ({ isAuth, setIsAuth }) => {
-  //   const [open, setOpen] = useState(false);
-  //   const [openDrawer, setOpenDrawer] = useState(false);
+const Navbar = ({ isAuth, setIsAuth, mode, setMode }) => {
+  // const [open, setOpen] = useState(false);
+  const [openDrawer, setOpenDrawer] = useState(false);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -59,12 +61,12 @@ const Navbar = ({ isAuth, setIsAuth }) => {
 
   return (
     <>
-      {/* <SideDrawer
+      <SideDrawer
         openDrawer={openDrawer}
         setOpenDrawer={setOpenDrawer}
         mode={mode}
         setMode={setMode}
-      /> */}
+      />
       <AppBar position="sticky">
         <StyledToolbar>
           <Box
@@ -74,13 +76,14 @@ const Navbar = ({ isAuth, setIsAuth }) => {
               alignItems: "center",
               cursor: "pointer",
             }}>
-            {/* <MenuIcon
-              //   onClick={(e) => setOpenDrawer(true)}
+            <MenuIcon
+              onClick={(e) => setOpenDrawer(true)}
               sx={{
+                display: { xs: "block", sm: "none" },
                 marginRight: "10px",
                 cursor: "pointer",
               }}
-            /> */}
+            />
             <Typography
               variant="h5"
               sx={{ display: { xs: "none", sm: "block" } }}>
