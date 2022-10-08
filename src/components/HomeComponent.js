@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import { collection, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { db } from "../firebase-config";
@@ -22,11 +22,17 @@ const HomeComponent = () => {
     <Box flex={4} sx={{ padding: { xs: "0", sm: "0px 20px " } }}>
       {postList.map((post, key) => {
         return (
-          <Box key={key}>
-            <div>{post.title}</div>
-            <div>{post.desc}</div>
-            <div>@{post.author.name}</div>
-          </Box>
+          <Stack key={key} spacing={2} p={2} direction="row">
+            <Box flex={1}></Box>
+            <Stack flex={4} direction="column">
+              <Box>
+                <b>{post.title}</b>
+              </Box>
+              <Box>{post.desc}</Box>
+              <Box>@{post.author.name}</Box>
+            </Stack>
+            <Box flex={1}></Box>
+          </Stack>
         );
       })}
     </Box>
