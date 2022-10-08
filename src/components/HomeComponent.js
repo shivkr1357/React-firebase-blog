@@ -21,7 +21,13 @@ const HomeComponent = () => {
   return (
     <Box flex={4} sx={{ padding: { xs: "0", sm: "0px 20px " } }}>
       {postList.map((post, key) => {
-        return <div key={key}>{post.title}</div>;
+        return (
+          <Box key={key}>
+            <div>{post.title}</div>
+            <div>{post.desc}</div>
+            <div>@{post.author.name}</div>
+          </Box>
+        );
       })}
     </Box>
   );
