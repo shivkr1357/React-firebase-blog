@@ -19,7 +19,7 @@ import React, { useEffect, useState } from "react";
 import { db } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
 import SmartText from "../helpers/SmartText";
-import { data } from "../helpers/data";
+// import { data } from "../helpers/data";
 
 const HomeComponent = () => {
   const [postList, setPostList] = useState([]);
@@ -32,12 +32,12 @@ const HomeComponent = () => {
     const getPosts = async () => {
       const data = await getDocs(postCollectionRef);
 
-      console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
 
     // console.log(data);
     getPosts();
-  }, []);
+  });
 
   return (
     <Box

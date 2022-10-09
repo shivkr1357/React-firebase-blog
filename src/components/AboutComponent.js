@@ -1,10 +1,10 @@
-import { Box, Stack, Divider, Avatar, Typography } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import SocialMediaIcons from "./SocialMediaIcons.js";
 
 const AboutComponent = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   return (
     <Stack
       sx={{
