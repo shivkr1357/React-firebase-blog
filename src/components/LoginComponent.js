@@ -6,14 +6,14 @@ import { signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { Stack, Box, Typography } from "@mui/material";
 
-const LoginComponent = ({ setIsAuth }) => {
+const LoginComponent = (setIsAuth) => {
   const navigate = useNavigate();
 
   const LoginWithGoogle = () => {
     signInWithPopup(auth, provider).then((result) => {
-      setIsAuth(true);
       localStorage.setItem("isAuth", true);
-
+      sessionStorage.setItem("isAuth", true);
+      // setIsAuth(true);
       navigate("/");
     });
   };

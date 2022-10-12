@@ -26,7 +26,11 @@ const App = () => {
             setMode={setMode}
           />
           <Routes>
-            <Route exact path="/" element={<Home />}></Route>
+            <Route
+              exact
+              path="/"
+              setIsAuth={setIsAuth}
+              element={<Home />}></Route>
             <Route path="/write" element={<Write isAuth={isAuth} />}></Route>
             <Route
               path="/login"

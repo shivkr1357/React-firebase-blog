@@ -16,6 +16,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../firebase-config";
 import SideDrawer from "./SideDrawer";
 import { useState } from "react";
+import { isAuthenticated } from "../helpers/auth";
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -50,6 +51,7 @@ const Navbar = ({ isAuth, setIsAuth, mode, setMode }) => {
   const handleLogout = () => {
     signOut(auth).then(() => {
       localStorage.clear();
+      sessionStorage.clear();
       navigate("/login");
       setIsAuth(false);
 
@@ -128,7 +130,7 @@ const Navbar = ({ isAuth, setIsAuth, mode, setMode }) => {
               Home
             </Button>
 
-            {isAuth && (
+            {isAuthenticated() && (
               <Button
                 variant="contained"
                 color="secondary"
@@ -139,7 +141,7 @@ const Navbar = ({ isAuth, setIsAuth, mode, setMode }) => {
                 Write
               </Button>
             )}
-            {!isAuth ? (
+            {!isAuthenticated() ? (
               <Button
                 variant="contained"
                 color="secondary"

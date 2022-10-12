@@ -1,24 +1,36 @@
-// import { setCookie, getCookie, deleteCookie } from "./cookies";
+import { setCookie, getCookie, deleteCookie } from "./cookies";
 import {
-  //   setLocalStorage,
+  setLocalStorage,
   getLocalStorage,
-  //   deleteLocalStorage,
+  deleteLocalStorage,
 } from "./localStorage";
 
-// export const setAuthentication = (token, user) => {
-//   setCookie("token", token);
-//   setLocalStorage("user", user);
-// };
+import {
+  getSessionStorage,
+  setSessionStorage,
+  deleteSessionStorage,
+} from "./session";
+
+export const setAuthentication = (isAuth, user) => {
+  setCookie("isAuth", true);
+  setLocalStorage("isAuth", true);
+  setSessionStorage("isAuth", true);
+};
 
 export const isAuthenticated = () => {
-  if (getLocalStorage("isAuth")) {
-    return getLocalStorage("isAuth");
+  if (
+    getCookie("isAuth") &&
+    getLocalStorage("isAuth") &&
+    getSessionStorage("isAuth")
+  ) {
+    return true;
   } else {
     return false;
   }
 };
 
-// export const logout = () => {
-//   deleteCookie("token");
-//   deleteLocalStorage("user");
-// };
+export const logout = () => {
+  deleteCookie("isAuth");
+  deleteLocalStorage("isAuth");
+  deleteSessionStorage("isAuth");
+};

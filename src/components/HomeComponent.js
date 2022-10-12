@@ -19,9 +19,11 @@ import React, { useEffect, useState } from "react";
 import { db } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
 import SmartText from "../helpers/SmartText";
+import { capitalize } from "../helpers/Capitalize";
+import { isAuthenticated } from "../helpers/auth";
 // import { data } from "../helpers/data";
 
-const HomeComponent = () => {
+const HomeComponent = (setIsAuth) => {
   const [postList, setPostList] = useState([]);
 
   const postCollectionRef = collection(db, "posts");
@@ -29,6 +31,10 @@ const HomeComponent = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (isAuthenticated()) {
+      // setIsAuth(true);
+    }
+
     const getPosts = async () => {
       const data = await getDocs(postCollectionRef);
 
@@ -45,7 +51,7 @@ const HomeComponent = () => {
       sx={{ padding: { xs: "0", sm: "0px 20px ", marginTop: "10px" } }}>
       {postList.map((post, key) => {
         return (
-          <Card sx={{ marginBottom: "20px" }}>
+          <Card key={key} sx={{ marginBottom: "20px" }}>
             <CardHeader
               avatar={
                 <Avatar sx={{ bgcolor: "red" }} aria-label="recipe">
@@ -58,20 +64,31 @@ const HomeComponent = () => {
                 </IconButton>
               }
               title={post.title}
-              // subheader={}
+              subheader={`by @${post.author.name}`}
               onClick={() => {
                 navigate("");
               }}
-              sx={{ cursor: "pointer" }}
+              titleTypographyProps={{ variant: "h5" }}
+              sx={{
+                cursor: "pointer",
+                color: "blue",
+                fontSize: "30px",
+                fontWeight: 600,
+              }}
             />
-            <CardMedia
+            {/* <CardMedia
               component="img"
               height="20%"
               // image={photo}
               alt="Paella dish"
-            />
-            <CardContent>
-              <SmartText text={post.desc} />
+            /> */}
+            <CardContent
+              sx={{
+                ":first-letter": { fontSize: "35px" },
+                fontSize: "20px",
+                whiteSpace: "pre-line",
+              }}>
+              <SmartText text={capitalize(post.desc)} />
               {/* <Typography variant="body2" color="text.secondary">
                 {post.desc}
               </Typography> */}
