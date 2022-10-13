@@ -21,6 +21,7 @@ import { useNavigate } from "react-router-dom";
 import SmartText from "../helpers/SmartText";
 import { capitalize } from "../helpers/Capitalize";
 import { isAuthenticated } from "../helpers/auth";
+import Footer from "./Footer";
 // import { data } from "../helpers/data";
 
 const HomeComponent = (setIsAuth) => {

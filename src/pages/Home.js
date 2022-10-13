@@ -5,6 +5,7 @@
 import { Box } from "@mui/material";
 import { Stack } from "@mui/system";
 import AboutComponent from "../components/AboutComponent";
+import Footer from "../components/Footer";
 import HomeComponent from "../components/HomeComponent";
 // import Navbar from "../components/Navbar";
 
@@ -17,14 +18,17 @@ const Home = () => {
   //   });
 
   return (
-    <Stack direction="row">
-      <Box flex={3}>
-        <HomeComponent />
-      </Box>
-      <Box flex={1} sx={{ display: { xs: "none", sm: "block" } }}>
-        <AboutComponent />
-      </Box>
-    </Stack>
+    <>
+      <Stack direction="row">
+        <Box flex={3}>
+          <HomeComponent />
+        </Box>
+        <Box flex={1} sx={{ display: { xs: "none", sm: "block" } }}>
+          <AboutComponent />
+        </Box>
+      </Stack>
+      <Footer />
+    </>
   );
 };
 
