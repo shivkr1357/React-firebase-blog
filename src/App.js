@@ -3,6 +3,7 @@ import { Box } from "@mui/material";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import SinglePostComponent from "./components/SinglePostComponent";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Write from "./pages/Write";
@@ -31,6 +32,11 @@ const App = () => {
               path="/"
               setIsAuth={setIsAuth}
               element={<Home />}></Route>
+            <Route
+              exact
+              path="/posts/:id"
+              setIsAuth={setIsAuth}
+              element={<SinglePostComponent />}></Route>
             <Route path="/write" element={<Write isAuth={isAuth} />}></Route>
             <Route
               path="/login"

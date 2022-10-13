@@ -41,9 +41,8 @@ const HomeComponent = (setIsAuth) => {
       setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
 
-    // console.log(data);
     getPosts();
-  });
+  }, []);
 
   return (
     <Box
@@ -66,7 +65,7 @@ const HomeComponent = (setIsAuth) => {
               title={post.title}
               subheader={`by @${post.author.name}`}
               onClick={() => {
-                navigate("");
+                navigate("/posts/" + post.id);
               }}
               titleTypographyProps={{ variant: "h5" }}
               sx={{
@@ -82,6 +81,7 @@ const HomeComponent = (setIsAuth) => {
               // image={photo}
               alt="Paella dish"
             /> */}
+
             <CardContent
               sx={{
                 ":first-letter": { fontSize: "35px" },
