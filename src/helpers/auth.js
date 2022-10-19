@@ -12,9 +12,10 @@ import {
 } from "./session";
 
 export const setAuthentication = (isAuth, user) => {
-  setCookie("isAuth", true);
-  setLocalStorage("isAuth", true);
-  setSessionStorage("isAuth", true);
+  setCookie("isAuth", isAuth);
+  setLocalStorage("isAuth", isAuth);
+  setLocalStorage("user", user);
+  setSessionStorage("isAuth", isAuth);
 };
 
 export const isAuthenticated = () => {

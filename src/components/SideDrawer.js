@@ -69,7 +69,7 @@ const SideDrawer = ({ openDrawer, setOpenDrawer, mode, setMode }) => {
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding onClick={(e) => setOpenDrawer(false)}>
-          <ListItemButton component="a" href="/posts/create">
+          <ListItemButton component="a" href="/write">
             <ListItemIcon>
               <Article />
             </ListItemIcon>
@@ -86,7 +86,7 @@ const SideDrawer = ({ openDrawer, setOpenDrawer, mode, setMode }) => {
         </ListItem> */}
         {isAuthenticated() && (
           <ListItem disablePadding onClick={(e) => setOpenDrawer(false)}>
-            <ListItemButton component="a" href="/posts/create">
+            <ListItemButton component="a" href="/write">
               <ListItemIcon>
                 <Group />
               </ListItemIcon>
@@ -97,7 +97,7 @@ const SideDrawer = ({ openDrawer, setOpenDrawer, mode, setMode }) => {
         {!isAuthenticated() && (
           <>
             <ListItem disablePadding onClick={(e) => setOpenDrawer(false)}>
-              <ListItemButton component="a" href="/auth/login">
+              <ListItemButton component="a" href="/login">
                 <ListItemIcon>
                   <Storefront />
                 </ListItemIcon>
@@ -105,14 +105,14 @@ const SideDrawer = ({ openDrawer, setOpenDrawer, mode, setMode }) => {
               </ListItemButton>
             </ListItem>
 
-            <ListItem disablePadding onClick={(e) => setOpenDrawer(false)}>
+            {/* <ListItem disablePadding onClick={(e) => setOpenDrawer(false)}>
               <ListItemButton component="a" href="/auth/register">
                 <ListItemIcon>
                   <Person />
                 </ListItemIcon>
                 <ListItemText primary="Register" />
               </ListItemButton>
-            </ListItem>
+            </ListItem> */}
           </>
         )}
         <Divider />

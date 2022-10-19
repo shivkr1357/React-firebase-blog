@@ -10,8 +10,16 @@ const SocialBox = styled(Box)({
 
 const Footer = () => {
   return (
-    <Box sx={{ background: "black", height: "300px" }}>
-      <Stack direction={{ xs: "row", md: "row" }} p={7}>
+    <Box
+      sx={{
+        background: "black",
+        height: "100%",
+        minHeight: "400px",
+      }}>
+      <Stack
+        direction={{ xs: "column", sm: "row", md: "row" }}
+        p={{ xs: 2, sm: 3, md: 7 }}
+        spacing={{ xs: 3, sm: 4, md: 5 }}>
         <Box flex={1}>
           <Box
             align={"center"}
@@ -39,17 +47,35 @@ const Footer = () => {
             ranging across
           </Typography> */}
         </Box>
-        <Box flex={1}>
-          <Typography color={"white"} align={"center"}>
-            Data policy
+        <Stack
+          flex={1}
+          spacing={1}
+          direction={{ xs: "row", sm: "column", md: "column" }}
+          justifyContent={"center"}>
+          <Typography color={"white"} align={"center"} display="flex">
+            Data policy{" "}
+            <Typography
+              sx={{
+                display: { xs: "block", sm: "block", md: "none" },
+                marginLeft: { xs: "10px", sm: "10px", md: "0px" },
+              }}>
+              |
+            </Typography>
           </Typography>
-          <Typography color={"white"} align={"center"}>
-            Cookies
+          <Typography color={"white"} align={"center"} display="flex">
+            Cookies{" "}
+            <Typography
+              sx={{
+                display: { xs: "block", sm: "block", md: "none" },
+                marginLeft: { xs: "10px", sm: "10px", md: "0px" },
+              }}>
+              |
+            </Typography>
           </Typography>
           <Typography color={"white"} align={"center"}>
             Data Safety
           </Typography>
-        </Box>
+        </Stack>
         <Box flex={1}>
           <Typography color={"white"} align={"center"}>
             Categories (Coming Soon)
@@ -64,15 +90,23 @@ const Footer = () => {
             Men
           </Typography> */}
         </Box>
-        <Box>
-          <Typography color={"white"} align={"center"}>
-            Follow Us
-          </Typography>
-          <SocialBox>
-            <Facebook />
-            <Instagram />
-            <Twitter />
-          </SocialBox>
+        <Box flex={1}>
+          <Box
+            align={"center"}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}>
+            <Typography color={"white"} align={"center"}>
+              Follow Us
+            </Typography>
+            <SocialBox>
+              <Facebook />
+              <Instagram />
+              <Twitter />
+            </SocialBox>
+          </Box>
         </Box>
       </Stack>
       <Typography color={"white"} align={"center"}>
