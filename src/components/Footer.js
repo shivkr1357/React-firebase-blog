@@ -12,7 +12,7 @@ const Footer = () => {
   return (
     <Box
       sx={{
-        background: "black",
+        "background-image": "linear-gradient(to right, #00395d, #8f8f8c)",
         height: "100%",
         minHeight: "400px",
       }}>
@@ -72,7 +72,7 @@ const Footer = () => {
               |
             </Typography>
           </Typography>
-          <Typography color={"white"} align={"center"}>
+          <Typography color={"white"} align={"center"} display="flex">
             Data Safety
           </Typography>
         </Stack>

@@ -30,8 +30,10 @@ const App = () => {
             <Route
               exact
               path="/"
-              setIsAuth={setIsAuth}
-              element={<Home />}></Route>
+              element={
+                <Home setIsAuth={setIsAuth} mode={mode} setMode={setMode} />
+              }
+            />
             <Route
               exact
               path="/posts/:id"

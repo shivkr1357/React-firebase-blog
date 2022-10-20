@@ -69,7 +69,11 @@ const Navbar = ({ isAuth, setIsAuth, mode, setMode }) => {
         mode={mode}
         setMode={setMode}
       />
-      <AppBar position="sticky">
+      <AppBar
+        position="sticky"
+        sx={{
+          "background-image": "linear-gradient(to right, #00395d, #8f8f8c)",
+        }}>
         <StyledToolbar>
           <Box
             sx={{
@@ -88,7 +92,10 @@ const Navbar = ({ isAuth, setIsAuth, mode, setMode }) => {
             />
             <Typography
               variant="h5"
-              sx={{ display: { xs: "none", sm: "block" } }}>
+              sx={{ display: { xs: "none", sm: "block" } }}
+              onClick={() => {
+                navigate("/");
+              }}>
               Itsindianguy
             </Typography>
           </Box>

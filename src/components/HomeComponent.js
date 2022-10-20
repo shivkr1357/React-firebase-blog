@@ -1,4 +1,4 @@
-import { Favorite, FavoriteBorder } from "@mui/icons-material";
+import { Favorite, FavoriteBorder, ModeNight } from "@mui/icons-material";
 import {
   Avatar,
   Box,
@@ -9,6 +9,7 @@ import {
   CardMedia,
   Checkbox,
   IconButton,
+  Switch,
   // Stack,
 } from "@mui/material";
 import ShareIcon from "@mui/icons-material/Share";
@@ -24,7 +25,7 @@ import { isAuthenticated } from "../helpers/auth";
 import Footer from "./Footer";
 // import { data } from "../helpers/data";
 
-const HomeComponent = (setIsAuth) => {
+const HomeComponent = ({ setIsAuth, mode, setMode }) => {
   const [postList, setPostList] = useState([]);
 
   const postCollectionRef = collection(db, "posts");
@@ -33,7 +34,7 @@ const HomeComponent = (setIsAuth) => {
 
   useEffect(() => {
     if (isAuthenticated()) {
-      // setIsAuth(true);
+      setIsAuth(true);
     }
 
     const getPosts = async () => {
@@ -49,9 +50,33 @@ const HomeComponent = (setIsAuth) => {
     <Box
       flex={4}
       sx={{ padding: { xs: "0", sm: "0px 20px ", marginTop: "10px" } }}>
+      <Box
+        sx={{
+          display: { xs: "flex", sm: "none", md: "none" },
+          alignItems: "flex-end",
+          justifyContent: "flex-end",
+          zIndex: 1,
+          position: "sticky",
+        }}>
+        <label htmlFor="fileInput">
+          <ModeNight />
+        </label>
+
+        <Switch
+          sx={{ display: "none" }}
+          id="fileInput"
+          onChange={(e) => setMode(mode === "light" ? "dark" : "light")}
+          checked={mode === "light" ? false : true}
+        />
+      </Box>
       {postList.map((post, key) => {
         return (
-          <Card key={key} sx={{ marginBottom: "20px" }}>
+          <Card
+            key={key}
+            sx={{ marginBottom: "20px" }}
+            onClick={() => {
+              navigate("/posts/" + post.id);
+            }}>
             <CardHeader
               avatar={
                 <Avatar sx={{ bgcolor: "red" }} aria-label="recipe">
