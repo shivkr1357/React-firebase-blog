@@ -20,7 +20,7 @@ const SinglePostComponent = () => {
     };
 
     getPosts();
-  }, []);
+  }, [postCollectionRef]);
 
   return (
     <>
