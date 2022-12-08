@@ -12,20 +12,22 @@ const Home = ({ mode, setMode, setIsAuth }) => {
         <Box flex={3}>
           <HomeComponent mode={mode} setMode={setMode} setIsAuth={setIsAuth} />
         </Box>
-        <Box flex={1} sx={{ display: { xs: "none", sm: "block" } }}>
-          <AboutComponent />
+        <Box flex={1} sx={{ display: { xs: "none", sm: "flex" } }}>
           <Box
             sx={{
               display: { xs: "none", sm: "none", md: "flex" },
-              alignItems: "flex-end",
-              justifyContent: "flex-end",
-              top: "550px",
-              right: "50px",
-              zIndex: 1,
-              position: "sticky",
+              flexDirection: "column",
+              flex: 1,
             }}>
             <label htmlFor="fileInput">
-              <ModeNight />
+              <ModeNight
+                sx={{
+                  display: { xs: "none", sm: "none", md: "flex" },
+                  alignSelf: "flex-end",
+                  position: "absolute",
+                  bottom: 35,
+                }}
+              />
             </label>
 
             <Switch
@@ -35,6 +37,7 @@ const Home = ({ mode, setMode, setIsAuth }) => {
               checked={mode === "light" ? false : true}
             />
           </Box>
+          <AboutComponent />
         </Box>
       </Stack>
       <Footer />

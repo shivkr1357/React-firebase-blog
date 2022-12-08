@@ -10,8 +10,6 @@ import {
   Stack,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-// import SideDrawer from "./SideDrawer";
-// import { isAuthenticated, logout } from "../Helpers/auth";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase-config";
 import SideDrawer from "./SideDrawer";
@@ -33,18 +31,7 @@ const Search = styled("div")(({ theme }) => ({
   },
 }));
 
-// const Icons = styled(Box)(({ theme }) => ({
-//   display: "none",
-//   alignItems: "center",
-//   justifyContent: "center",
-//   gap: "15px",
-//   [theme.breakpoints.up("sm")]: {
-//     display: "flex",
-//   },
-// }));
-
-const Navbar = ({ isAuth, setIsAuth, mode, setMode }) => {
-  // const [open, setOpen] = useState(false);
+const Navbar = ({ setIsAuth, mode, setMode }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const navigate = useNavigate();
 
@@ -54,8 +41,6 @@ const Navbar = ({ isAuth, setIsAuth, mode, setMode }) => {
       sessionStorage.clear();
       navigate("/login");
       setIsAuth(false);
-
-      console.log("logged Out");
     });
 
     navigate("/");
@@ -169,29 +154,6 @@ const Navbar = ({ isAuth, setIsAuth, mode, setMode }) => {
             )}
           </Stack>
         </StyledToolbar>
-        {/* <Menu
-          id="demo-positioned-menu"
-          aria-labelledby="demo-positioned-button"
-          open={open}
-          onMouseOver={(e) => setOpen(true)}
-          onMouseLeave={(e) => setOpen(false)}
-          anchorOrigin={{
-            vertical: "top",
-            horizontal: "right",
-          }}
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "right",
-          }}>
-          <MenuItem component="a" href="/accounts/profile">
-            Profile
-          </MenuItem>
-          <MenuItem>My account</MenuItem>
-
-          {isAuthenticated() && (
-            <MenuItem onClick={handleLogout}>Logout</MenuItem>
-          )}
-        </Menu> */}
       </AppBar>
     </>
   );
