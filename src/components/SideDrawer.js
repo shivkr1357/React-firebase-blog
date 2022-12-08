@@ -18,7 +18,7 @@ import {
   Group,
   Home,
   ModeNight,
-  Person,
+  // Person,
   //   Settings,
   Storefront,
   Close,

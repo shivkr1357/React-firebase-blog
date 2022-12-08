@@ -6,7 +6,6 @@ import {
   CardActions,
   CardContent,
   CardHeader,
-  CardMedia,
   Checkbox,
   IconButton,
   Switch,
@@ -21,8 +20,8 @@ import { db } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
 import SmartText from "../helpers/SmartText";
 import { capitalize } from "../helpers/Capitalize";
-import { isAuthenticated } from "../helpers/auth";
-import Footer from "./Footer";
+// import { isAuthenticated } from "../helpers/auth";
+// import Footer from "./Footer";
 // import { data } from "../helpers/data";
 
 const HomeComponent = ({ setIsAuth, mode, setMode }) => {
@@ -33,9 +32,9 @@ const HomeComponent = ({ setIsAuth, mode, setMode }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isAuthenticated()) {
-      setIsAuth(true);
-    }
+    // if (isAuthenticated()) {
+    //   setIsAuth(true);
+    // }
 
     const getPosts = async () => {
       const data = await getDocs(postCollectionRef);
@@ -44,7 +43,7 @@ const HomeComponent = ({ setIsAuth, mode, setMode }) => {
     };
 
     getPosts();
-  }, []);
+  }, [postCollectionRef]);
 
   return (
     <Box
