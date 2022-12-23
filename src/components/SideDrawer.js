@@ -76,6 +76,14 @@ const SideDrawer = ({ openDrawer, setOpenDrawer, mode, setMode }) => {
             <ListItemText primary="Write" />
           </ListItemButton>
         </ListItem>
+        <ListItem disablePadding onClick={(e) => setOpenDrawer(false)}>
+          <ListItemButton component="a" href="/write">
+            <ListItemIcon>
+              <Article />
+            </ListItemIcon>
+            <ListItemText primary="React Js Interview Q/A" />
+          </ListItemButton>
+        </ListItem>
         {/* <ListItem disablePadding onClick={(e) => setOpenDrawer(false)}>
           <ListItemButton component="a" href="#simple-list">
             <ListItemIcon>
@@ -122,7 +130,10 @@ const SideDrawer = ({ openDrawer, setOpenDrawer, mode, setMode }) => {
               <ModeNight />
             </ListItemIcon>
             <Switch
-              onChange={(e) => setMode(mode === "light" ? "dark" : "light")}
+              onChange={(e) => {
+                setMode(mode === "light" ? "dark" : "light");
+                setOpenDrawer(false);
+              }}
               checked={mode === "light" ? false : true}
             />
           </ListItemButton>

@@ -43,31 +43,12 @@ const HomeComponent = ({ setIsAuth, mode, setMode }) => {
     };
 
     getPosts();
-  }, [postCollectionRef]);
+  }, []);
 
   return (
     <Box
       flex={4}
       sx={{ padding: { xs: "0", sm: "0px 20px ", marginTop: "10px" } }}>
-      <Box
-        sx={{
-          display: { xs: "flex", sm: "none", md: "none" },
-          alignItems: "flex-end",
-          justifyContent: "flex-end",
-          zIndex: 1,
-          position: "sticky",
-        }}>
-        <label htmlFor="fileInput">
-          <ModeNight />
-        </label>
-
-        <Switch
-          sx={{ display: "none" }}
-          id="fileInput"
-          onChange={(e) => setMode(mode === "light" ? "dark" : "light")}
-          checked={mode === "light" ? false : true}
-        />
-      </Box>
       {postList.map((post, key) => {
         return (
           <Card
