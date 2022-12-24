@@ -4,6 +4,7 @@ import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import SinglePostComponent from "./components/SinglePostComponent";
+import Blog from "./pages/Blog";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Write from "./pages/Write";
@@ -40,6 +41,7 @@ const App = () => {
               setIsAuth={setIsAuth}
               element={<SinglePostComponent />}></Route>
             <Route path="/write" element={<Write isAuth={isAuth} />}></Route>
+            <Route path="/blog" element={<Blog />}></Route>
             <Route
               path="/login"
               element={<Login setIsAuth={setIsAuth} />}></Route>

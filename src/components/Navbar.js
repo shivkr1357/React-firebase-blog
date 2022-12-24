@@ -8,8 +8,8 @@ import {
   InputBase,
   Button,
   Stack,
-  TextField,
-  Switch,
+  MenuItem,
+  Menu,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { signOut } from "firebase/auth";
@@ -17,7 +17,7 @@ import { auth } from "../firebase-config";
 import SideDrawer from "./SideDrawer";
 import { useState } from "react";
 import { isAuthenticated } from "../helpers/auth";
-import { ModeNight } from "@mui/icons-material";
+// import { ModeNight } from "@mui/icons-material";
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -39,6 +39,8 @@ const Search = styled("div")(({ theme }) => ({
 
 const Navbar = ({ setIsAuth, mode, setMode }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -50,6 +52,15 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
     });
 
     navigate("/");
+  };
+
+  const handleClick = (e) => {
+    setOpen(true);
+    setAnchorEl(e.currentTarget);
+  };
+
+  const handleRequestClose = (e) => {
+    setOpen(false);
   };
 
   return (
@@ -123,43 +134,93 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
               sx={{ width: "contained" }}>
               Register
             </Button> */}
+
             <Button
-              variant="contained"
-              color="secondary"
-              onClick={() => {
-                navigate("/");
+              variant="text"
+              sx={{
+                width: "contained",
+                cursor: "pointer",
+                color: "white",
+                fontWeight: 600,
               }}
-              sx={{ width: "contained" }}>
-              Home
+              onClose={handleRequestClose}
+              aria-owns={open ? "simple-menu" : null}
+              aria-haspopup="true"
+              onClick={handleClick}
+              onMouseOver={handleClick}>
+              Interview Q/A
+            </Button>
+            <Menu
+              id="simple-menu"
+              anchorEl={anchorEl}
+              open={open}
+              onRequestClose={handleRequestClose}
+              // onChange={handleChange}
+            >
+              <MenuItem value={10} onClick={handleRequestClose}>
+                JavaScript Interview Q/A (Coming Soon )
+              </MenuItem>
+              <MenuItem value={20} onClick={handleRequestClose}>
+                JavaScript Interview Q/A (Coming Soon )
+              </MenuItem>
+              <MenuItem value={30} onClick={handleRequestClose}>
+                JavaScript Interview Q/A (Coming Soon )
+              </MenuItem>
+            </Menu>
+
+            <Button
+              variant="text"
+              onClick={() => {
+                navigate("/blog");
+              }}
+              sx={{
+                width: "contained",
+                cursor: "pointer",
+                color: "white",
+                fontWeight: 600,
+              }}>
+              Blog
             </Button>
 
             {isAuthenticated() && (
               <Button
-                variant="contained"
-                color="secondary"
+                variant="text"
                 onClick={() => {
                   navigate("/write");
                 }}
-                sx={{ width: "contained" }}>
+                sx={{
+                  width: "contained",
+                  cursor: "pointer",
+                  color: "white",
+                  fontWeight: 600,
+                }}>
                 Write
               </Button>
             )}
             {!isAuthenticated() ? (
               <Button
-                variant="contained"
-                color="secondary"
+                variant="text"
                 onClick={() => {
                   navigate("/login");
                 }}
-                sx={{ width: "contained" }}>
+                sx={{
+                  width: "contained",
+                  cursor: "pointer",
+                  color: "white",
+                  fontWeight: 600,
+                }}>
                 Login
               </Button>
             ) : (
               <Button
-                variant="contained"
-                color="secondary"
+                variant="text"
                 onClick={handleLogout}
-                sx={{ width: "contained" }}>
+                sx={{
+                  width: "contained",
+                  cursor: "pointer",
+                  color: "white",
+                  fontWeight: 600,
+                }}>
                 Logout
               </Button>
             )}

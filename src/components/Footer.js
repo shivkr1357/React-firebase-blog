@@ -89,16 +89,39 @@ const Footer = () => {
           <Typography color={"white"} align={"center"}>
             Categories
           </Typography>
-          <Typography color={"white"} align={"center"}>
+          <Typography
+            color={"white"}
+            align={"center"}
+            onClick={() => {
+              navigate("/");
+              window.scrollTo(0, 0);
+            }}>
             Blog
           </Typography>
-          <Typography color={"white"} align={"center"}>
+          <Typography
+            color={"white"}
+            align={"center"}
+            onClick={() => {
+              navigate("/");
+            }}>
             JavaScript Interview Q/A (Coming Soon )
           </Typography>
-          <Typography color={"white"} align={"center"}>
+          <Typography
+            color={"white"}
+            align={"center"}
+            onClick={() => {
+              navigate("/");
+              window.scrollTo(0, 0);
+            }}>
             React Js Interview Q/A (Coming Soon )
           </Typography>
-          <Typography color={"white"} align={"center"}>
+          <Typography
+            color={"white"}
+            align={"center"}
+            onClick={() => {
+              navigate("/");
+              window.scrollTo(0, 0);
+            }}>
             Node Js Interview Q/A (Coming Soon )
           </Typography>
           {/* <Typography color={"white"} variant={"body2"} align={"center"}>
