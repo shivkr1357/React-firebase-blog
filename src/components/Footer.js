@@ -1,6 +1,7 @@
 import { Box, Stack, Typography, styled } from "@mui/material";
-import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Facebook, Instagram, Twitter } from "@mui/icons-material/";
+
 const SocialBox = styled(Box)({
   display: "flex",
   gap: 10,
@@ -9,6 +10,7 @@ const SocialBox = styled(Box)({
 });
 
 const Footer = () => {
+  const navigate = useNavigate();
   return (
     <Box
       sx={{
@@ -28,7 +30,14 @@ const Footer = () => {
               flexDirection: "column",
               alignItems: "center",
             }}>
-            <Typography color={"white"} align={"center"}>
+            <Typography
+              color={"white"}
+              align={"center"}
+              sx={{ cursor: "pointer" }}
+              onClick={() => {
+                navigate("/");
+                window.scrollTo(0, 0);
+              }}>
               Contact Us
             </Typography>
             <SocialBox>
@@ -78,7 +87,19 @@ const Footer = () => {
         </Stack>
         <Box flex={1}>
           <Typography color={"white"} align={"center"}>
-            Categories (Coming Soon)
+            Categories
+          </Typography>
+          <Typography color={"white"} align={"center"}>
+            Blog
+          </Typography>
+          <Typography color={"white"} align={"center"}>
+            JavaScript Interview Q/A (Coming Soon )
+          </Typography>
+          <Typography color={"white"} align={"center"}>
+            React Js Interview Q/A (Coming Soon )
+          </Typography>
+          <Typography color={"white"} align={"center"}>
+            Node Js Interview Q/A (Coming Soon )
           </Typography>
           {/* <Typography color={"white"} variant={"body2"} align={"center"}>
             Kids
