@@ -9,15 +9,15 @@ const SmartText = ({ text, length = 150 }) => {
 
   return (
     <div>
-      <p
+      <div
         dangerouslySetInnerHTML={{
           __html: showLess ? `${text.slice(0, length)}...` : text,
-        }}></p>
-      <p
+        }}></div>
+      <div
         style={{ color: "blue", cursor: "pointer" }}
         onClick={() => setShowLess(!showLess)}>
         &nbsp;View {showLess ? "More" : "Less"}
-      </p>
+      </div>
     </div>
   );
 };

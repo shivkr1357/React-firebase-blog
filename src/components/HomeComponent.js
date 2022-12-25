@@ -59,7 +59,7 @@ const HomeComponent = ({ setIsAuth, mode, setMode }) => {
             }}>
             <CardHeader
               avatar={
-                <Avatar sx={{ bgcolor: "red" }} aria-label="recipe">
+                <Avatar sx={{ bgcolor: "red" }} aria-label="question">
                   {Array.from(post.title)[0]}
                 </Avatar>
               }

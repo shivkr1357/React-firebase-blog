@@ -16,7 +16,7 @@ const Footer = () => {
       sx={{
         "background-image": "linear-gradient(to right, #00395d, #8f8f8c)",
         height: "100%",
-        minHeight: "400px",
+        minHeight: "280px",
       }}>
       <Stack
         direction={{ xs: "column", sm: "row", md: "row" }}
