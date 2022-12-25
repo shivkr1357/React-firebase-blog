@@ -6,6 +6,9 @@ import Navbar from "./components/Navbar";
 import SinglePostComponent from "./components/SinglePostComponent";
 import Blog from "./pages/Blog";
 import Home from "./pages/Home";
+import Javascript from "./pages/Interview Q/Javascript";
+import Node from "./pages/Interview Q/Node";
+import React from "./pages/Interview Q/ReactFile";
 import Login from "./pages/Login";
 import Write from "./pages/Write";
 
@@ -42,6 +45,15 @@ const App = () => {
               element={<SinglePostComponent />}></Route>
             <Route path="/write" element={<Write isAuth={isAuth} />}></Route>
             <Route path="/blog" element={<Blog />}></Route>
+            <Route
+              path="/interview-qa/node-js-interview-questions"
+              element={<Node />}></Route>
+            <Route
+              path="/interview-qa/react-js-interview-questions"
+              element={<React />}></Route>
+            <Route
+              path="/interview-qa/js-interview-questions"
+              element={<Javascript />}></Route>
             <Route
               path="/login"
               element={<Login setIsAuth={setIsAuth} />}></Route>

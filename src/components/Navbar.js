@@ -17,7 +17,6 @@ import { auth } from "../firebase-config";
 import SideDrawer from "./SideDrawer";
 import { useState } from "react";
 import { isAuthenticated } from "../helpers/auth";
-// import { ModeNight } from "@mui/icons-material";
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -94,7 +93,7 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
             />
             <Typography
               variant="h5"
-              sx={{ display: { xs: "none", sm: "block" } }}
+              sx={{ alignSelf: "right" }}
               onClick={() => {
                 navigate("/");
               }}>
@@ -102,7 +101,7 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
             </Typography>
           </Box>
 
-          <Search>
+          <Search sx={{ display: { xs: "none", sm: "block" } }}>
             <InputBase
               name="search"
               id="search"
@@ -116,25 +115,6 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
             spacing={2}
             direction="row"
             sx={{ display: { xs: "none", sm: "block" } }}>
-            {/* <Button
-              variant="outlined"
-              color="secondary"
-              onClick={() => {
-                navigate("/auth/login");
-              }}
-              sx={{ width: "contained" }}>
-              Login
-            </Button>
-            <Button
-              onClick={() => {
-                navigate("/auth/register");
-              }}
-              variant="outlined"
-              color="secondary"
-              sx={{ width: "contained" }}>
-              Register
-            </Button> */}
-
             <Button
               variant="text"
               sx={{
@@ -146,7 +126,6 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
               onClose={handleRequestClose}
               aria-owns={open ? "simple-menu" : null}
               aria-haspopup="true"
-              onClick={handleClick}
               onMouseOver={handleClick}>
               Interview Q/A
             </Button>
@@ -157,14 +136,32 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
               onRequestClose={handleRequestClose}
               // onChange={handleChange}
             >
-              <MenuItem value={10} onClick={handleRequestClose}>
+              <MenuItem
+                value={10}
+                onClick={() => {
+                  setOpen(false);
+                  navigate("/interview-qa/js-interview-questions");
+                  window.scrollTo(0, 0);
+                }}>
                 JavaScript Interview Q/A (Coming Soon )
               </MenuItem>
-              <MenuItem value={20} onClick={handleRequestClose}>
-                JavaScript Interview Q/A (Coming Soon )
+              <MenuItem
+                value={20}
+                onClick={() => {
+                  setOpen(false);
+                  navigate("/interview-qa/react-js-interview-questions");
+                  window.scrollTo(0, 0);
+                }}>
+                React Js Interview Q/A (Coming Soon )
               </MenuItem>
-              <MenuItem value={30} onClick={handleRequestClose}>
-                JavaScript Interview Q/A (Coming Soon )
+              <MenuItem
+                value=""
+                onClick={() => {
+                  setOpen(false);
+                  navigate("/interview-qa/node-js-interview-questions");
+                  window.scrollTo(0, 0);
+                }}>
+                Node Js Interview Q/A (Coming Soon )
               </MenuItem>
             </Menu>
 
@@ -187,6 +184,7 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
                 variant="text"
                 onClick={() => {
                   navigate("/write");
+                  window.scrollTo(0, 0);
                 }}
                 sx={{
                   width: "contained",
@@ -202,6 +200,7 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
                 variant="text"
                 onClick={() => {
                   navigate("/login");
+                  window.scrollTo(0, 0);
                 }}
                 sx={{
                   width: "contained",

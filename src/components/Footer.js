@@ -102,27 +102,27 @@ const Footer = () => {
             color={"white"}
             align={"center"}
             onClick={() => {
-              navigate("/");
+              navigate("/interview-qa/js-interview-questions");
             }}>
-            JavaScript Interview Q/A (Coming Soon )
+            JavaScript Interview Q/A
           </Typography>
           <Typography
             color={"white"}
             align={"center"}
             onClick={() => {
-              navigate("/");
+              navigate("/interview-qa/react-js-interview-questions");
               window.scrollTo(0, 0);
             }}>
-            React Js Interview Q/A (Coming Soon )
+            React Js Interview Q/A
           </Typography>
           <Typography
             color={"white"}
             align={"center"}
             onClick={() => {
-              navigate("/");
+              navigate("/interview-qa/node-js-interview-questions");
               window.scrollTo(0, 0);
             }}>
-            Node Js Interview Q/A (Coming Soon )
+            Node Js Interview Q/A
           </Typography>
           {/* <Typography color={"white"} variant={"body2"} align={"center"}>
             Kids

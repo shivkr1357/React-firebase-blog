@@ -77,7 +77,9 @@ const SideDrawer = ({ openDrawer, setOpenDrawer, mode, setMode }) => {
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding onClick={(e) => setOpenDrawer(false)}>
-          <ListItemButton component="a" href="/write">
+          <ListItemButton
+            component="a"
+            href="/interview-qa/react-js-interview-questions">
             <ListItemIcon>
               <Article />
             </ListItemIcon>
