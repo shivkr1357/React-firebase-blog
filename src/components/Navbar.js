@@ -8,8 +8,8 @@ import {
   InputBase,
   Button,
   Stack,
-  TextField,
-  Switch,
+  MenuItem,
+  Menu,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { signOut } from "firebase/auth";
@@ -17,7 +17,6 @@ import { auth } from "../firebase-config";
 import SideDrawer from "./SideDrawer";
 import { useState } from "react";
 import { isAuthenticated } from "../helpers/auth";
-import { ModeNight } from "@mui/icons-material";
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -39,6 +38,8 @@ const Search = styled("div")(({ theme }) => ({
 
 const Navbar = ({ setIsAuth, mode, setMode }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -50,6 +51,15 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
     });
 
     navigate("/");
+  };
+
+  const handleClick = (e) => {
+    setOpen(true);
+    setAnchorEl(e.currentTarget);
+  };
+
+  const handleRequestClose = (e) => {
+    setOpen(false);
   };
 
   return (
@@ -83,7 +93,7 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
             />
             <Typography
               variant="h5"
-              sx={{ display: { xs: "none", sm: "block" } }}
+              sx={{ alignSelf: "right" }}
               onClick={() => {
                 navigate("/");
               }}>
@@ -91,7 +101,7 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
             </Typography>
           </Box>
 
-          <Search>
+          <Search sx={{ display: { xs: "none", sm: "block" } }}>
             <InputBase
               name="search"
               id="search"
@@ -105,61 +115,111 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
             spacing={2}
             direction="row"
             sx={{ display: { xs: "none", sm: "block" } }}>
-            {/* <Button
-              variant="outlined"
-              color="secondary"
-              onClick={() => {
-                navigate("/auth/login");
+            <Button
+              variant="text"
+              sx={{
+                width: "contained",
+                cursor: "pointer",
+                color: "white",
+                fontWeight: 600,
               }}
-              sx={{ width: "contained" }}>
-              Login
+              onClose={handleRequestClose}
+              aria-owns={open ? "simple-menu" : null}
+              aria-haspopup="true"
+              onMouseOver={handleClick}>
+              Interview Q/A
             </Button>
+            <Menu
+              id="simple-menu"
+              anchorEl={anchorEl}
+              open={open}
+              onRequestClose={handleRequestClose}
+              // onChange={handleChange}
+            >
+              <MenuItem
+                value={10}
+                onClick={() => {
+                  setOpen(false);
+                  navigate("/interview-qa/js-interview-questions");
+                  window.scrollTo(0, 0);
+                }}>
+                JavaScript Interview Q/A (Coming Soon )
+              </MenuItem>
+              <MenuItem
+                value={20}
+                onClick={() => {
+                  setOpen(false);
+                  navigate("/interview-qa/react-js-interview-questions");
+                  window.scrollTo(0, 0);
+                }}>
+                React Js Interview Q/A (Coming Soon )
+              </MenuItem>
+              <MenuItem
+                value=""
+                onClick={() => {
+                  setOpen(false);
+                  navigate("/interview-qa/node-js-interview-questions");
+                  window.scrollTo(0, 0);
+                }}>
+                Node Js Interview Q/A (Coming Soon )
+              </MenuItem>
+            </Menu>
+
             <Button
+              variant="text"
               onClick={() => {
-                navigate("/auth/register");
+                navigate("/blog");
               }}
-              variant="outlined"
-              color="secondary"
-              sx={{ width: "contained" }}>
-              Register
-            </Button> */}
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={() => {
-                navigate("/");
-              }}
-              sx={{ width: "contained" }}>
-              Home
+              sx={{
+                width: "contained",
+                cursor: "pointer",
+                color: "white",
+                fontWeight: 600,
+              }}>
+              Blog
             </Button>
 
             {isAuthenticated() && (
               <Button
-                variant="contained"
-                color="secondary"
+                variant="text"
                 onClick={() => {
                   navigate("/write");
+                  window.scrollTo(0, 0);
                 }}
-                sx={{ width: "contained" }}>
+                sx={{
+                  width: "contained",
+                  cursor: "pointer",
+                  color: "white",
+                  fontWeight: 600,
+                }}>
                 Write
               </Button>
             )}
             {!isAuthenticated() ? (
               <Button
-                variant="contained"
-                color="secondary"
+                variant="text"
                 onClick={() => {
                   navigate("/login");
+                  window.scrollTo(0, 0);
                 }}
-                sx={{ width: "contained" }}>
+                sx={{
+                  width: "contained",
+                  cursor: "pointer",
+                  color: "white",
+                  fontWeight: 600,
+                }}>
                 Login
               </Button>
             ) : (
               <Button
-                variant="contained"
-                color="secondary"
+                variant="text"
                 onClick={handleLogout}
-                sx={{ width: "contained" }}>
+                sx={{
+                  width: "contained",
+                  cursor: "pointer",
+                  color: "white",
+                  fontWeight: 600,
+                }}>
                 Logout
               </Button>
             )}

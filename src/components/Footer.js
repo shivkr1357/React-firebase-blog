@@ -16,7 +16,7 @@ const Footer = () => {
       sx={{
         "background-image": "linear-gradient(to right, #00395d, #8f8f8c)",
         height: "100%",
-        minHeight: "400px",
+        minHeight: "280px",
       }}>
       <Stack
         direction={{ xs: "column", sm: "row", md: "row" }}
@@ -89,17 +89,40 @@ const Footer = () => {
           <Typography color={"white"} align={"center"}>
             Categories
           </Typography>
-          <Typography color={"white"} align={"center"}>
+          <Typography
+            color={"white"}
+            align={"center"}
+            onClick={() => {
+              navigate("/");
+              window.scrollTo(0, 0);
+            }}>
             Blog
           </Typography>
-          <Typography color={"white"} align={"center"}>
-            JavaScript Interview Q/A (Coming Soon )
+          <Typography
+            color={"white"}
+            align={"center"}
+            onClick={() => {
+              navigate("/interview-qa/js-interview-questions");
+            }}>
+            JavaScript Interview Q/A
           </Typography>
-          <Typography color={"white"} align={"center"}>
-            React Js Interview Q/A (Coming Soon )
+          <Typography
+            color={"white"}
+            align={"center"}
+            onClick={() => {
+              navigate("/interview-qa/react-js-interview-questions");
+              window.scrollTo(0, 0);
+            }}>
+            React Js Interview Q/A
           </Typography>
-          <Typography color={"white"} align={"center"}>
-            Node Js Interview Q/A (Coming Soon )
+          <Typography
+            color={"white"}
+            align={"center"}
+            onClick={() => {
+              navigate("/interview-qa/node-js-interview-questions");
+              window.scrollTo(0, 0);
+            }}>
+            Node Js Interview Q/A
           </Typography>
           {/* <Typography color={"white"} variant={"body2"} align={"center"}>
             Kids
