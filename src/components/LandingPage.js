@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import backgroundImage from "./static/backgroundImage.jpg";
+import backgroundImage from "../static/backgroundImage.jpg";
 import { useNavigate } from "react-router-dom";
 
 const LandingPage = () => {
@@ -32,15 +32,17 @@ const LandingPage = () => {
             }}>
             <Typography
               align="center"
+              variant="h1"
               p={2}
               pt={8}
-              sx={{ cursor: "pointer" }}
+              sx={{ fontSize: "20px", fontFamily: "Roboto", cursor: "pointer" }}
               onClick={() => navigate("/interview-qa/js-interview-questions")}>
               Top INTERVIEW QUESTIONS of the JAVASCRIPT
             </Typography>
             <Typography
               align="center"
-              sx={{ cursor: "pointer" }}
+              variant="h2"
+              sx={{ fontSize: "20px", fontFamily: "Roboto", cursor: "pointer" }}
               p={2}
               onClick={() =>
                 navigate("/interview-qa/react-js-interview-questions")
@@ -49,7 +51,8 @@ const LandingPage = () => {
             </Typography>
             <Typography
               align="center"
-              sx={{ cursor: "pointer" }}
+              variant="h3"
+              sx={{ fontSize: "20px", fontFamily: "Roboto", cursor: "pointer" }}
               p={2}
               pb={8}
               onClick={() =>

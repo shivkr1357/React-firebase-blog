@@ -1,12 +1,12 @@
 import { Box, Stack } from "@mui/material";
-import React from "react";
+import React, { Fragment } from "react";
 import AboutComponent from "../../components/AboutComponent";
 import Footer from "../../components/Footer";
 import JavascriptComponent from "../../components/Interview/JavascriptComponent";
 
 const Javascript = () => {
   return (
-    <>
+    <Fragment>
       <Stack direction="row">
         <Box flex={4}>
           <JavascriptComponent />
@@ -16,7 +16,7 @@ const Javascript = () => {
         </Box>
       </Stack>
       <Footer />
-    </>
+    </Fragment>
   );
 };
 

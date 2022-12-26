@@ -15,7 +15,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase-config";
 import SideDrawer from "./SideDrawer";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { isAuthenticated } from "../helpers/auth";
 
 const StyledToolbar = styled(Toolbar)({
@@ -63,7 +63,7 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
   };
 
   return (
-    <>
+    <Fragment>
       <SideDrawer
         openDrawer={openDrawer}
         setOpenDrawer={setOpenDrawer}
@@ -226,7 +226,7 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
           </Stack>
         </StyledToolbar>
       </AppBar>
-    </>
+    </Fragment>
   );
 };
 

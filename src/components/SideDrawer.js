@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 import {
   Drawer,
@@ -105,7 +105,7 @@ const SideDrawer = ({ openDrawer, setOpenDrawer, mode, setMode }) => {
           </ListItem>
         )}
         {!isAuthenticated() && (
-          <>
+          <Fragment>
             <ListItem disablePadding onClick={(e) => setOpenDrawer(false)}>
               <ListItemButton component="a" href="/login">
                 <ListItemIcon>
@@ -123,7 +123,7 @@ const SideDrawer = ({ openDrawer, setOpenDrawer, mode, setMode }) => {
                 <ListItemText primary="Register" />
               </ListItemButton>
             </ListItem> */}
-          </>
+          </Fragment>
         )}
         <Divider />
         <ListItem disablePadding>
