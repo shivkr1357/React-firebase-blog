@@ -92,8 +92,9 @@ const Footer = () => {
           <Typography
             color={"white"}
             align={"center"}
+            sx={{ cursor: "pointer" }}
             onClick={() => {
-              navigate("/");
+              navigate("/blog");
               window.scrollTo(0, 0);
             }}>
             Blog
@@ -101,6 +102,7 @@ const Footer = () => {
           <Typography
             color={"white"}
             align={"center"}
+            sx={{ cursor: "pointer" }}
             onClick={() => {
               navigate("/interview-qa/js-interview-questions");
             }}>
@@ -109,6 +111,7 @@ const Footer = () => {
           <Typography
             color={"white"}
             align={"center"}
+            sx={{ cursor: "pointer" }}
             onClick={() => {
               navigate("/interview-qa/react-js-interview-questions");
               window.scrollTo(0, 0);
@@ -118,6 +121,7 @@ const Footer = () => {
           <Typography
             color={"white"}
             align={"center"}
+            sx={{ cursor: "pointer" }}
             onClick={() => {
               navigate("/interview-qa/node-js-interview-questions");
               window.scrollTo(0, 0);

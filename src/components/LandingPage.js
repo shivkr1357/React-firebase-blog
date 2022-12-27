@@ -1,11 +1,68 @@
 import { Box, Typography } from "@mui/material";
 import backgroundImage from "../static/backgroundImage.jpg";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useEffect } from "react";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  serverTimestamp,
+  updateDoc,
+} from "firebase/firestore";
+import { db } from "../firebase-config";
 
 const LandingPage = () => {
   const navigate = useNavigate();
+  const [visitor, setVisitor] = useState(0);
+  const visitorCollectionRef = collection(db, "visitor_counter");
+  let visitorCounter;
+
+  const addVisitor = async () => {
+    console.log("here in add");
+    await addDoc(visitorCollectionRef, {
+      visitorCount: visitor + 1,
+      created: serverTimestamp(),
+    });
+  };
+
+  useEffect(() => {
+    const getVisitor = async () => {
+      const data = await getDocs(visitorCollectionRef);
+      if (data.docs.length === 1) {
+        data.docs.map((doc) => {
+          setVisitor(doc.data().visitorCount);
+          updateVisitor(doc.id, doc.data().visitorCount);
+        });
+      } else {
+        addVisitor();
+      }
+    };
+    getVisitor();
+  }, []);
+
+  const updateVisitor = async (visitor_id, visitorCount) => {
+    const visitorDoc = doc(db, "visitor_counter", visitor_id);
+
+    await updateDoc(visitorDoc, { visitorCount: visitorCount + 1 });
+  };
+
   return (
     <Box>
+      <Typography
+        variant="h1"
+        sx={{
+          display: "flex ",
+          justifyContent: "center",
+          alignItems: "center",
+          fontSize: "20px",
+          fontWeight: "500",
+          fontFamily: "Roboto",
+        }}>
+        You are visitor number {visitor}
+      </Typography>
       <Box
         sx={{
           backgroundImage: `url(${backgroundImage})`,
