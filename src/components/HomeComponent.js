@@ -1,4 +1,4 @@
-import { Favorite, FavoriteBorder, ModeNight } from "@mui/icons-material";
+import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import {
   Avatar,
   Box,
@@ -8,8 +8,6 @@ import {
   CardHeader,
   Checkbox,
   IconButton,
-  Switch,
-  // Stack,
 } from "@mui/material";
 import ShareIcon from "@mui/icons-material/Share";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -20,9 +18,6 @@ import { db } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
 import SmartText from "../helpers/SmartText";
 import { capitalize } from "../helpers/Capitalize";
-// import { isAuthenticated } from "../helpers/auth";
-// import Footer from "./Footer";
-// import { data } from "../helpers/data";
 
 const HomeComponent = ({ setIsAuth, mode, setMode }) => {
   const [postList, setPostList] = useState([]);

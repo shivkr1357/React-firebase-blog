@@ -13,13 +13,10 @@ import {
   Divider,
 } from "@mui/material";
 import {
-  //   AccountBox,
   Article,
   Group,
   Home,
   ModeNight,
-  // Person,
-  //   Settings,
   Storefront,
   Close,
 } from "@mui/icons-material";
@@ -79,11 +76,31 @@ const SideDrawer = ({ openDrawer, setOpenDrawer, mode, setMode }) => {
         <ListItem disablePadding onClick={(e) => setOpenDrawer(false)}>
           <ListItemButton
             component="a"
+            href="/interview-qa/js-interview-questions">
+            <ListItemIcon>
+              <Article />
+            </ListItemIcon>
+            <ListItemText primary="Javascript Interview Q/A" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding onClick={(e) => setOpenDrawer(false)}>
+          <ListItemButton
+            component="a"
             href="/interview-qa/react-js-interview-questions">
             <ListItemIcon>
               <Article />
             </ListItemIcon>
             <ListItemText primary="React Js Interview Q/A" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding onClick={(e) => setOpenDrawer(false)}>
+          <ListItemButton
+            component="a"
+            href="/interview-qa/node-js-interview-questions">
+            <ListItemIcon>
+              <Article />
+            </ListItemIcon>
+            <ListItemText primary="Node Js Interview Q/A" />
           </ListItemButton>
         </ListItem>
         {/* <ListItem disablePadding onClick={(e) => setOpenDrawer(false)}>

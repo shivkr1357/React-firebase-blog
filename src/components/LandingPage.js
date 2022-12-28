@@ -7,7 +7,6 @@ import {
   addDoc,
   collection,
   doc,
-  getDoc,
   getDocs,
   serverTimestamp,
   updateDoc,
@@ -18,7 +17,6 @@ const LandingPage = () => {
   const navigate = useNavigate();
   const [visitor, setVisitor] = useState(0);
   const visitorCollectionRef = collection(db, "visitor_counter");
-  let visitorCounter;
 
   const addVisitor = async () => {
     console.log("here in add");
