@@ -1,6 +1,7 @@
 import { Box, Stack, Typography, styled } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Facebook, Instagram, Twitter } from "@mui/icons-material/";
+import "./CSS/footer.css";
 
 const SocialBox = styled(Box)({
   display: "flex",
@@ -41,9 +42,28 @@ const Footer = () => {
               Contact Us
             </Typography>
             <SocialBox>
-              <Facebook />
-              <Instagram />
-              <Twitter />
+              <a
+                className="anchorTag facebook"
+                href="https://www.facebook.com/itsindianguy">
+                <Facebook />
+              </a>
+              <a
+                className="anchorTag instagram"
+                href="https://www.instagram.com/itsindianguy/">
+                <Instagram />
+              </a>
+
+              <a
+                className="anchorTag twitter"
+                href="https://twitter.com/itsindianguy/">
+                <Twitter />
+              </a>
+              <a
+                className="anchorTag quora"
+                href="https://itsindianguy.quora.com/"
+                style={{ fontSize: "24px" }}>
+                <i className="fa-brands fa-quora"></i>
+              </a>
             </SocialBox>
           </Box>
           {/* <Typography color={"white"} align={"center"}>
@@ -150,15 +170,34 @@ const Footer = () => {
               Follow Us
             </Typography>
             <SocialBox>
-              <Facebook />
-              <Instagram />
-              <Twitter />
+              <a
+                className="anchorTag facebook"
+                href="https://www.facebook.com/itsindianguy">
+                <Facebook />
+              </a>
+              <a
+                className="anchorTag instagram"
+                href="https://www.instagram.com/itsindianguy/">
+                <Instagram />
+              </a>
+
+              <a
+                className="anchorTag twitter"
+                href="https://twitter.com/itsindianguy/">
+                <Twitter />
+              </a>
+              <a
+                className="anchorTag quora"
+                href="https://itsindianguy.quora.com/"
+                style={{ fontSize: "24px" }}>
+                <i className="fa-brands fa-quora"></i>
+              </a>
             </SocialBox>
           </Box>
         </Box>
       </Stack>
       <Typography color={"white"} align={"center"}>
-        Copyright &copy;{" itsindianguy.com"}
+        Copyright &copy;{" itsindianguy.in"}
       </Typography>
     </Box>
   );

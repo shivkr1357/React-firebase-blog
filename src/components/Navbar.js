@@ -195,7 +195,7 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
               name="search"
               id="search"
               color="success"
-              placeholder="Search Itsindianguy"
+              placeholder="Search Itsindianguy ( Coming Soon ) "
             />
           </Search>
 

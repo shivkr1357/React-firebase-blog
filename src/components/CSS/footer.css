@@ -1,0 +1,16 @@
+.anchorTag {
+  text-decoration: none;
+  color: white;
+}
+.anchorTag.facebook:hover {
+  color: #3b5998;
+}
+.anchorTag.instagram:hover {
+  color: #962fbf;
+}
+.anchorTag.twitter:hover {
+  color: #00acee;
+}
+.anchorTag.quora:hover {
+  color: #b92b27;
+}

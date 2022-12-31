@@ -8,7 +8,14 @@ const Node = () => {
   return (
     <Fragment>
       <Stack direction="row">
-        <Box flex={4}>
+        <Box flex={1} sx={{ display: { xs: "none", sm: "flex" } }}></Box>
+        <Box
+          flex={4}
+          sx={{
+            border: { xs: "none", sm: "1px solid black" },
+            borderTop: "none",
+            borderBottom: "none",
+          }}>
           <NodeComponent />
         </Box>
         <Box flex={1} sx={{ display: { xs: "none", sm: "flex" } }}>

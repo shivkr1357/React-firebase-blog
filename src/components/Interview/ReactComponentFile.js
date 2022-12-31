@@ -1,6 +1,7 @@
 import { Box, Stack, Typography } from "@mui/material";
 import React, { Fragment } from "react";
 import { reactQuestions } from "../../questions";
+import { renderHTML } from "../../helpers/renderHTML";
 
 const ReactComponentFile = () => {
   return (
@@ -36,7 +37,7 @@ const ReactComponentFile = () => {
                 <Typography
                   variant="p"
                   sx={{ fontFamily: "Roboto", paddingTop: "20px" }}>
-                  {data.ans}
+                  {renderHTML(data.ans)}
                 </Typography>
               </label>
             </Box>
