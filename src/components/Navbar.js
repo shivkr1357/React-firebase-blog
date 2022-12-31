@@ -15,7 +15,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase-config";
 import SideDrawer from "./SideDrawer";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { isAuthenticated } from "../helpers/auth";
 
 const StyledToolbar = styled(Toolbar)({
@@ -63,7 +63,7 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
   };
 
   return (
-    <>
+    <Fragment>
       <SideDrawer
         openDrawer={openDrawer}
         setOpenDrawer={setOpenDrawer}
@@ -76,41 +76,6 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
           "background-image": "linear-gradient(to right, #00395d, #8f8f8c)",
         }}>
         <StyledToolbar>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              cursor: "pointer",
-            }}>
-            <MenuIcon
-              onClick={(e) => setOpenDrawer(true)}
-              sx={{
-                display: { xs: "block", sm: "none" },
-                marginRight: "10px",
-                cursor: "pointer",
-              }}
-            />
-            <Typography
-              variant="h5"
-              sx={{ alignSelf: "right" }}
-              onClick={() => {
-                navigate("/");
-              }}>
-              Itsindianguy
-            </Typography>
-          </Box>
-
-          <Search sx={{ display: { xs: "none", sm: "block" } }}>
-            <InputBase
-              name="search"
-              id="search"
-              color="success"
-              placeholder="Search Itsindianguy"
-            />
-          </Search>
-
-          {/* {!isAuthenticated() && ( */}
           <Stack
             spacing={2}
             direction="row"
@@ -224,9 +189,56 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
               </Button>
             )}
           </Stack>
+
+          <Search sx={{ display: { xs: "none", sm: "block" } }}>
+            <InputBase
+              name="search"
+              id="search"
+              color="success"
+              placeholder="Search Itsindianguy ( Coming Soon ) "
+            />
+          </Search>
+
+          {/* {!isAuthenticated() && ( */}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              cursor: "pointer",
+              display: { xs: "block", sm: "none" },
+            }}>
+            <MenuIcon
+              onClick={(e) => setOpenDrawer(true)}
+              sx={{
+                display: { xs: "block", sm: "none" },
+                marginRight: "10px",
+                cursor: "pointer",
+              }}
+            />
+          </Box>
+          <img
+            src="/newLogo.png"
+            alt="Logo"
+            style={{
+              margin: 0,
+              padding: 0,
+              width: { xs: "5px", sm: "20px", md: "50px" },
+              height: "50px",
+              objectFit: "cover",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              cursor: "pointer",
+              borderRadius: "50%",
+            }}
+            onClick={() => {
+              navigate("/");
+            }}
+          />
         </StyledToolbar>
       </AppBar>
-    </>
+    </Fragment>
   );
 };
 

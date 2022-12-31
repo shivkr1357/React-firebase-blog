@@ -1,6 +1,6 @@
 import { ThumbDown, ThumbUp } from "@mui/icons-material";
 import { Box, CircularProgress, Stack, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
@@ -23,7 +23,7 @@ const SinglePostComponent = () => {
   }, []);
 
   return (
-    <>
+    <Fragment>
       <Stack direction="row">
         <Box flex={1} sx={{ display: { xs: "none", sm: "block" } }}></Box>
         <Box
@@ -81,7 +81,7 @@ const SinglePostComponent = () => {
         <Box flex={1} sx={{ display: { xs: "none", sm: "block" } }}></Box>
       </Stack>
       <Footer />
-    </>
+    </Fragment>
   );
 };
 

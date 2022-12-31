@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 
 const SmartText = ({ text, length = 150 }) => {
   const [showLess, setShowLess] = useState(true);
 
   if (text.length < length) {
-    return <>{text}</>;
+    return <Fragment>{text}</Fragment>;
   }
 
   return (

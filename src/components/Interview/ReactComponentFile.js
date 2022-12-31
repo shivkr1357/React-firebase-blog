@@ -1,11 +1,13 @@
 import { Box, Stack, Typography } from "@mui/material";
-import React from "react";
+import React, { Fragment } from "react";
 import { reactQuestions } from "../../questions";
+import { renderHTML } from "../../helpers/renderHTML";
 
 const ReactComponentFile = () => {
   return (
-    <>
-      <h2
+    <Fragment>
+      <Typography
+        variant="h5"
         style={{
           padding: "10px",
           fontWeight: 800,
@@ -14,7 +16,7 @@ const ReactComponentFile = () => {
           fontFamily: "Roboto",
         }}>
         React Js Top Interview Questions
-      </h2>
+      </Typography>
 
       {reactQuestions.map((data, key) => {
         return (
@@ -27,18 +29,22 @@ const ReactComponentFile = () => {
                   fontWeight: 900,
                   fontFamily: "Roboto",
                 }}>
-                <b>{data.id + "." + data.que}</b>
+                <Typography variant="h6">
+                  <b>{data.id + "." + data.que}</b>
+                </Typography>
               </label>
               <label htmlFor="answer">
-                <Typography sx={{ fontFamily: "Roboto", paddingTop: "20px" }}>
-                  {data.ans}
+                <Typography
+                  variant="p"
+                  sx={{ fontFamily: "Roboto", paddingTop: "20px" }}>
+                  {renderHTML(data.ans)}
                 </Typography>
               </label>
             </Box>
           </Stack>
         );
       })}
-    </>
+    </Fragment>
   );
 };
 
