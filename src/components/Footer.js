@@ -81,8 +81,16 @@ const Footer = () => {
           spacing={1}
           direction={{ xs: "row", sm: "column", md: "column" }}
           justifyContent={"center"}>
-          <Typography color={"white"} align={"center"} display="flex">
-            Data policy{" "}
+          <Typography
+            color={"white"}
+            align={"center"}
+            sx={{ cursor: "pointer" }}
+            display="flex"
+            onClick={() => {
+              navigate("/privacy-policy");
+              window.scrollTo(0, 0);
+            }}>
+            Privacy policy{" "}
             <Typography
               sx={{
                 display: { xs: "block", sm: "block", md: "none" },
@@ -91,7 +99,15 @@ const Footer = () => {
               |
             </Typography>
           </Typography>
-          <Typography color={"white"} align={"center"} display="flex">
+          <Typography
+            color={"white"}
+            align={"center"}
+            sx={{ cursor: "pointer" }}
+            display="flex"
+            onClick={() => {
+              navigate("/cookies-policy");
+              window.scrollTo(0, 0);
+            }}>
             Cookies{" "}
             <Typography
               sx={{
@@ -101,7 +117,15 @@ const Footer = () => {
               |
             </Typography>
           </Typography>
-          <Typography color={"white"} align={"center"} display="flex">
+          <Typography
+            color={"white"}
+            align={"center"}
+            display="flex"
+            sx={{ cursor: "pointer" }}
+            onClick={() => {
+              navigate("/data-policy");
+              window.scrollTo(0, 0);
+            }}>
             Data Safety
           </Typography>
         </Stack>

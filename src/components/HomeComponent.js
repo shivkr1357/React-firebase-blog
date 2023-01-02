@@ -64,7 +64,7 @@ const HomeComponent = ({ setIsAuth, mode, setMode }) => {
                 </IconButton>
               }
               title={post.title}
-              subheader={`by @${post.author.name}`}
+              subheader={`by @${post.author.name} at ${post.createdAt} `}
               onClick={() => {
                 navigate("/posts/" + post.id);
               }}

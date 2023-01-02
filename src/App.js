@@ -2,7 +2,10 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import { Box } from "@mui/material";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import CookiesPolicy from "./components/CookiesPolicy";
+import DataSafety from "./components/DataSafety";
 import Navbar from "./components/Navbar";
+import PrivacyPolicy from "./components/PrivacyPolicy";
 import SinglePostComponent from "./components/SinglePostComponent";
 import Blog from "./pages/Blog";
 import Home from "./pages/Home";
@@ -54,6 +57,9 @@ const App = () => {
             <Route
               path="/interview-qa/js-interview-questions"
               element={<Javascript />}></Route>
+            <Route path="/privacy-policy" element={<PrivacyPolicy />}></Route>
+            <Route path="/cookies-policy" element={<CookiesPolicy />}></Route>
+            <Route path="/data-policy" element={<DataSafety />}></Route>
             <Route
               path="/login"
               element={<Login setIsAuth={setIsAuth} />}></Route>

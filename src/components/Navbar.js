@@ -3,7 +3,6 @@ import {
   AppBar,
   styled,
   Toolbar,
-  Typography,
   Box,
   InputBase,
   Button,
@@ -202,11 +201,10 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
           {/* {!isAuthenticated() && ( */}
           <Box
             sx={{
-              display: "flex",
               justifyContent: "center",
               alignItems: "center",
               cursor: "pointer",
-              display: { xs: "block", sm: "none" },
+              display: { xs: "flex", sm: "none" },
             }}>
             <MenuIcon
               onClick={(e) => setOpenDrawer(true)}
