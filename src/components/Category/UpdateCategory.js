@@ -1,13 +1,5 @@
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  orderBy,
-  query,
-  updateDoc,
-} from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import React from "react";
 import { Fragment } from "react";
 import { useEffect } from "react";
@@ -27,7 +19,7 @@ const UpdateCategory = () => {
 
   const updateCategory = async () => {
     await updateDoc(categoryDocRef, { name: categoryName });
-    navigate("/categories/get-all-categories");
+    navigate("/admin/categories");
   };
 
   useEffect(() => {
@@ -76,7 +68,7 @@ const UpdateCategory = () => {
               color="error"
               sx={{ marginTop: "20px", marginRight: "20px" }}
               onClick={() => {
-                navigate("/categories/get-all-categories");
+                navigate("/admin/categories");
               }}>
               Cancel
             </Button>

@@ -102,7 +102,7 @@ const CategoryComponent = () => {
               variant="contained"
               color="success"
               onClick={() => {
-                navigate("/categories/add-category");
+                navigate("/admin/categories/add-category");
               }}>
               Add
             </Button>
@@ -151,7 +151,7 @@ const CategoryComponent = () => {
                                 sx={{ cursor: "pointer" }}
                                 onClick={() => {
                                   navigate(
-                                    "/categories/edit-category/" + cat.id
+                                    "/admin/categories/edit-category/" + cat.id
                                   );
                                 }}
                               />

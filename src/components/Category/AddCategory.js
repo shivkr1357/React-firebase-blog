@@ -15,7 +15,7 @@ const AddCategory = () => {
       author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
       created: serverTimestamp(),
     });
-    navigate("/categories/get-all-categories");
+    navigate("/admin/categories");
   };
   useEffect(() => {
     if (!localStorage.getItem("isAuth")) {
@@ -59,7 +59,7 @@ const AddCategory = () => {
               color="error"
               sx={{ marginTop: "20px", marginRight: "20px" }}
               onClick={() => {
-                navigate("/categories/get-all-categories");
+                navigate("/admin/categories");
               }}>
               Cancel
             </Button>
