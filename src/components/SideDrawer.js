@@ -11,6 +11,7 @@ import {
   Switch,
   ListSubheader,
   Divider,
+  Collapse,
 } from "@mui/material";
 import {
   Article,
@@ -19,11 +20,23 @@ import {
   ModeNight,
   Storefront,
   Close,
+  ExpandLess,
+  ExpandMore,
+  StarBorder,
 } from "@mui/icons-material";
 import SocialMediaIcons from "./SocialMediaIcons";
 import { isAuthenticated } from "../helpers/auth";
+import { useState } from "react";
 
 const SideDrawer = ({ openDrawer, setOpenDrawer, mode, setMode }) => {
+  const [openCategory, setOpenCategory] = useState(false);
+  const [openInterview, setOpenInterview] = useState(false);
+  const handleCategoryClick = () => {
+    setOpenCategory(!openCategory);
+  };
+  const handleInterviewClick = () => {
+    setOpenInterview(!openInterview);
+  };
   return (
     <Drawer
       open={openDrawer}
@@ -73,36 +86,77 @@ const SideDrawer = ({ openDrawer, setOpenDrawer, mode, setMode }) => {
             <ListItemText primary="Write" />
           </ListItemButton>
         </ListItem>
-        <ListItem disablePadding onClick={(e) => setOpenDrawer(false)}>
-          <ListItemButton
-            component="a"
-            href="/interview-qa/js-interview-questions">
+        <ListItem disablePadding>
+          <ListItemButton component="a" href="/categories/get-all-categories">
             <ListItemIcon>
               <Article />
             </ListItemIcon>
-            <ListItemText primary="Javascript Interview Q/A" />
+            <ListItemText primary="Categories" />
+            {openCategory ? (
+              <ExpandLess onClick={handleCategoryClick} />
+            ) : (
+              <ExpandMore onClick={handleCategoryClick} />
+            )}
           </ListItemButton>
         </ListItem>
-        <ListItem disablePadding onClick={(e) => setOpenDrawer(false)}>
-          <ListItemButton
-            component="a"
-            href="/interview-qa/react-js-interview-questions">
+        <Collapse in={openCategory} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItemButton
+              sx={{ pl: 4 }}
+              component="a"
+              href="/categories/add-category">
+              <ListItemIcon>
+                <StarBorder />
+              </ListItemIcon>
+              <ListItemText primary="Add Category" />
+            </ListItemButton>
+          </List>
+        </Collapse>
+        <ListItem disablePadding>
+          <ListItemButton>
             <ListItemIcon>
               <Article />
             </ListItemIcon>
-            <ListItemText primary="React Js Interview Q/A" />
+            <ListItemText primary="Interview Q/A" />
+            {openInterview ? (
+              <ExpandLess onClick={handleInterviewClick} />
+            ) : (
+              <ExpandMore onClick={handleInterviewClick} />
+            )}
           </ListItemButton>
         </ListItem>
-        <ListItem disablePadding onClick={(e) => setOpenDrawer(false)}>
-          <ListItemButton
-            component="a"
-            href="/interview-qa/node-js-interview-questions">
-            <ListItemIcon>
-              <Article />
-            </ListItemIcon>
-            <ListItemText primary="Node Js Interview Q/A" />
-          </ListItemButton>
-        </ListItem>
+        <Collapse in={openInterview} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItemButton
+              sx={{ pl: 4 }}
+              component="a"
+              href="/interview-qa/js-interview-questions">
+              <ListItemIcon>
+                <StarBorder />
+              </ListItemIcon>
+              <ListItemText primary="Core JavaScript" />
+            </ListItemButton>
+            <ListItemButton
+              sx={{ pl: 4 }}
+              component="a"
+              href="/interview-qa/react-js-interview-questions">
+              <ListItemIcon>
+                <StarBorder />
+              </ListItemIcon>
+              <ListItemText primary="React Js" />
+            </ListItemButton>
+            <ListItemButton
+              sx={{ pl: 4 }}
+              component="a"
+              href="/interview-qa/node-js-interview-questions">
+              <ListItemIcon>
+                <StarBorder />
+              </ListItemIcon>
+              <ListItemText primary="Node Js" />
+            </ListItemButton>
+          </List>
+        </Collapse>
+
         {/* <ListItem disablePadding onClick={(e) => setOpenDrawer(false)}>
           <ListItemButton component="a" href="#simple-list">
             <ListItemIcon>

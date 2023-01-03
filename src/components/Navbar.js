@@ -16,6 +16,7 @@ import { auth } from "../firebase-config";
 import SideDrawer from "./SideDrawer";
 import { Fragment, useState } from "react";
 import { isAuthenticated } from "../helpers/auth";
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -90,8 +91,13 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
               onClose={handleRequestClose}
               aria-owns={open ? "simple-menu" : null}
               aria-haspopup="true"
-              onMouseOver={handleClick}>
-              Interview Q/A
+              onClick={handleClick}>
+              Interview Q/A{" "}
+              {open ? (
+                <ExpandLess onClick={handleClick} />
+              ) : (
+                <ExpandMore onClick={handleClick} />
+              )}
             </Button>
             <Menu
               id="simple-menu"
@@ -107,7 +113,7 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
                   navigate("/interview-qa/js-interview-questions");
                   window.scrollTo(0, 0);
                 }}>
-                JavaScript Interview Q/A (Coming Soon )
+                JavaScript Interview Q/A
               </MenuItem>
               <MenuItem
                 value={20}
@@ -116,7 +122,7 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
                   navigate("/interview-qa/react-js-interview-questions");
                   window.scrollTo(0, 0);
                 }}>
-                React Js Interview Q/A (Coming Soon )
+                React Js Interview Q/A
               </MenuItem>
               <MenuItem
                 value=""
@@ -125,9 +131,24 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
                   navigate("/interview-qa/node-js-interview-questions");
                   window.scrollTo(0, 0);
                 }}>
-                Node Js Interview Q/A (Coming Soon )
+                Node Js Interview Q/A
               </MenuItem>
             </Menu>
+            {isAuthenticated() && (
+              <Button
+                variant="text"
+                onClick={() => {
+                  navigate("/admin/categories");
+                }}
+                sx={{
+                  width: "contained",
+                  cursor: "pointer",
+                  color: "white",
+                  fontWeight: 600,
+                }}>
+                Categories
+              </Button>
+            )}
 
             <Button
               variant="text"

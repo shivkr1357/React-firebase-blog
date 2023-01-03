@@ -2,6 +2,9 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import { Box } from "@mui/material";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AddCategory from "./components/Category/AddCategory";
+import CategoryComponent from "./components/Category/CategoryComponent";
+import UpdateCategory from "./components/Category/UpdateCategory";
 import CookiesPolicy from "./components/CookiesPolicy";
 import DataSafety from "./components/DataSafety";
 import Navbar from "./components/Navbar";
@@ -13,6 +16,9 @@ import Javascript from "./pages/Interview Q/Javascript";
 import Node from "./pages/Interview Q/Node";
 import React from "./pages/Interview Q/ReactFile";
 import Login from "./pages/Login";
+import NotFound from "./pages/NotFound";
+import AdminHome from "./pages/PrivateRoutes/AdminHome";
+import { PrivateRoute } from "./pages/PrivateRoutes/PrivateRoutes";
 import Write from "./pages/Write";
 
 const App = () => {
@@ -57,12 +63,25 @@ const App = () => {
             <Route
               path="/interview-qa/js-interview-questions"
               element={<Javascript />}></Route>
+
+            {/* static pages */}
             <Route path="/privacy-policy" element={<PrivacyPolicy />}></Route>
             <Route path="/cookies-policy" element={<CookiesPolicy />}></Route>
             <Route path="/data-policy" element={<DataSafety />}></Route>
             <Route
               path="/login"
               element={<Login setIsAuth={setIsAuth} />}></Route>
+            <Route path="*" element={<NotFound />} />
+
+            <Route path="/admin" element={<PrivateRoute />}>
+              <Route path="categories" element={<CategoryComponent />} />
+
+              <Route path="categories/add-category" element={<AddCategory />} />
+              <Route
+                path="categories/edit-category/:id"
+                element={<UpdateCategory />}
+              />
+            </Route>
           </Routes>
         </Box>
       </ThemeProvider>
