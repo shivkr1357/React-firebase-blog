@@ -15,6 +15,7 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 import { auth, db } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
+import FixedTags from "./MultipleSelect";
 
 const WriteComponent = ({ isAuth }) => {
   const [title, setTitle] = useState("");
@@ -61,6 +62,7 @@ const WriteComponent = ({ isAuth }) => {
 
       <form style={{ position: "relative", marginTop: "50px" }}>
         <Stack spacing={2}>
+          {/* <FixedTags /> */}
           {/* <Stack direction="row" spacing={1}>
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <label htmlFor="fileInput">

@@ -103,7 +103,7 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
               id="simple-menu"
               anchorEl={anchorEl}
               open={open}
-              onRequestClose={handleRequestClose}
+              onClose={handleRequestClose}
               // onChange={handleChange}
             >
               <MenuItem

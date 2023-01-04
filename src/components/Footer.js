@@ -1,6 +1,7 @@
-import { Box, Stack, Typography, styled } from "@mui/material";
+import { Box, Stack, Typography, styled, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Facebook, Instagram, Twitter } from "@mui/icons-material/";
+// import { OutlinedInput } from "@mui/material";
 import "./CSS/footer.css";
 
 const SocialBox = styled(Box)({
@@ -12,6 +13,11 @@ const SocialBox = styled(Box)({
 
 const Footer = () => {
   const navigate = useNavigate();
+
+  // const handleSendEmail = () => {
+  //   console.log();
+  // };
+
   return (
     <Box
       sx={{
@@ -19,6 +25,35 @@ const Footer = () => {
         height: "100%",
         minHeight: "280px",
       }}>
+      {/* <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: "20px",
+          margin: "10px",
+        }}>
+        <OutlinedInput
+          sx={{
+            height: "50px",
+            width: "400px",
+            color: "black",
+            backgroundColor: "white",
+            marginRight: "10px",
+          }}
+        />
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{
+            height: "50px",
+            width: "40px",
+            color: "black",
+          }}
+          onClick={handleSendEmail}>
+          Email
+        </Button>
+      </Box> */}
       <Stack
         direction={{ xs: "column", sm: "row", md: "row" }}
         p={{ xs: 2, sm: 3, md: 7 }}
