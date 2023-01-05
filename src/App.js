@@ -8,6 +8,8 @@ import UpdateCategory from "./components/Category/UpdateCategory";
 import CookiesPolicy from "./components/CookiesPolicy";
 import DataSafety from "./components/DataSafety";
 import Navbar from "./components/Navbar";
+import EditPost from "./components/Posts/EditPost";
+import Post from "./components/Posts/Post";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import SinglePostComponent from "./components/SinglePostComponent";
 import Blog from "./pages/Blog";
@@ -74,6 +76,9 @@ const App = () => {
             <Route path="*" element={<NotFound />} />
 
             <Route path="/admin" element={<PrivateRoute />}>
+              <Route path="posts" element={<Post />} />
+              <Route path="posts/edit-post/:id" element={<EditPost />} />
+
               <Route path="categories" element={<CategoryComponent />} />
 
               <Route path="categories/add-category" element={<AddCategory />} />

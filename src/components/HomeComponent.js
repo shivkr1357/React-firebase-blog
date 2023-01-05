@@ -9,6 +9,7 @@ import {
   Checkbox,
   CircularProgress,
   IconButton,
+  Stack,
 } from "@mui/material";
 import ShareIcon from "@mui/icons-material/Share";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -59,7 +60,9 @@ const HomeComponent = ({ setIsAuth, mode, setMode }) => {
           });
           const newDate = `${formattedDate} ${formattedTime}`;
           return (
-            <Card key={key} sx={{ marginBottom: "20px" }}>
+            <Card
+              key={key}
+              sx={{ marginBottom: "20px", boxShadow: "-moz-initial" }}>
               <CardHeader
                 avatar={
                   <Avatar sx={{ bgcolor: "red" }} aria-label="question">
@@ -94,6 +97,23 @@ const HomeComponent = ({ setIsAuth, mode, setMode }) => {
               // image={photo}
               alt="Paella dish"
             /> */}
+              <Stack
+                direction="row"
+                sx={{
+                  display: "flex",
+                  padding: "5px",
+                  margin: "5px",
+                }}>
+                <Box
+                  sx={{
+                    margin: "10px",
+                    padding: "5px",
+                    borderRadius: "10px",
+                    backgroundColor: "silver",
+                  }}>
+                  {post.category?.map((cat) => cat.name)}
+                </Box>
+              </Stack>
 
               <CardContent
                 sx={{

@@ -78,40 +78,47 @@ const SideDrawer = ({ openDrawer, setOpenDrawer, mode, setMode }) => {
             <ListItemText primary="Homepage" />
           </ListItemButton>
         </ListItem>
-        <ListItem disablePadding onClick={(e) => setOpenDrawer(false)}>
+
+        {/* <ListItem disablePadding onClick={(e) => setOpenDrawer(false)}>
           <ListItemButton component="a" href="/write">
             <ListItemIcon>
               <Article />
             </ListItemIcon>
             <ListItemText primary="Write" />
           </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton component="a" href="/categories/get-all-categories">
-            <ListItemIcon>
-              <Article />
-            </ListItemIcon>
-            <ListItemText primary="Categories" />
-            {openCategory ? (
-              <ExpandLess onClick={handleCategoryClick} />
-            ) : (
-              <ExpandMore onClick={handleCategoryClick} />
-            )}
-          </ListItemButton>
-        </ListItem>
-        <Collapse in={openCategory} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItemButton
-              sx={{ pl: 4 }}
-              component="a"
-              href="/categories/add-category">
-              <ListItemIcon>
-                <StarBorder />
-              </ListItemIcon>
-              <ListItemText primary="Add Category" />
-            </ListItemButton>
-          </List>
-        </Collapse>
+        </ListItem> */}
+        {isAuthenticated() && (
+          <Fragment>
+            <ListItem disablePadding>
+              <ListItemButton
+                component="a"
+                href="/categories/get-all-categories">
+                <ListItemIcon>
+                  <Article />
+                </ListItemIcon>
+                <ListItemText primary="Categories" />
+                {openCategory ? (
+                  <ExpandLess onClick={handleCategoryClick} />
+                ) : (
+                  <ExpandMore onClick={handleCategoryClick} />
+                )}
+              </ListItemButton>
+            </ListItem>
+            <Collapse in={openCategory} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <ListItemButton
+                  sx={{ pl: 4 }}
+                  component="a"
+                  href="/categories/add-category">
+                  <ListItemIcon>
+                    <StarBorder />
+                  </ListItemIcon>
+                  <ListItemText primary="Add Category" />
+                </ListItemButton>
+              </List>
+            </Collapse>
+          </Fragment>
+        )}
         <ListItem disablePadding>
           <ListItemButton>
             <ListItemIcon>
