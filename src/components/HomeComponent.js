@@ -104,15 +104,19 @@ const HomeComponent = ({ setIsAuth, mode, setMode }) => {
                   padding: "5px",
                   margin: "5px",
                 }}>
-                <Box
-                  sx={{
-                    margin: "10px",
-                    padding: "5px",
-                    borderRadius: "10px",
-                    backgroundColor: "silver",
-                  }}>
-                  {post.category?.map((cat) => cat.name)}
-                </Box>
+                {post.category?.map((cat) => {
+                  return (
+                    <Box
+                      sx={{
+                        margin: "5px",
+                        padding: "8px",
+                        borderRadius: "2px",
+                        backgroundColor: "silver",
+                      }}>
+                      {cat.name}
+                    </Box>
+                  );
+                })}
               </Stack>
 
               <CardContent
