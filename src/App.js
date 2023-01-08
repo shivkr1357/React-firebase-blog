@@ -37,54 +37,61 @@ const App = () => {
     <Router>
       <ThemeProvider theme={darkTheme}>
         <Box bgcolor={"background.default"} color={"text.primary"}>
-          <Navbar
-            isAuth={isAuth}
-            setIsAuth={setIsAuth}
-            mode={mode}
-            setMode={setMode}
-          />
           <Routes>
             <Route
-              exact
               path="/"
               element={
-                <Home setIsAuth={setIsAuth} mode={mode} setMode={setMode} />
-              }
-            />
-            <Route
-              exact
-              path="/posts/:id"
-              setIsAuth={setIsAuth}
-              element={<SinglePostComponent />}></Route>
-            <Route path="/write" element={<Write isAuth={isAuth} />}></Route>
-            <Route path="/blog" element={<Blog />}></Route>
-            <Route
-              path="/interview-qa/node-js-interview-questions"
-              element={<Node />}></Route>
-            <Route
-              path="/interview-qa/react-js-interview-questions"
-              element={<React />}></Route>
-            <Route
-              path="/interview-qa/js-interview-questions"
-              element={<Javascript />}></Route>
-
-            {/* static pages */}
-            <Route path="/privacy-policy" element={<PrivacyPolicy />}></Route>
-            <Route path="/cookies-policy" element={<CookiesPolicy />}></Route>
-            <Route path="/data-policy" element={<DataSafety />}></Route>
-            <Route
-              path="/login"
-              element={<Login setIsAuth={setIsAuth} />}></Route>
-            <Route path="/register" element={<Register />}></Route>
-            <Route path="*" element={<NotFound />} />
-
+                <Navbar // This is showing in all routes nested inside it
+                  isAuth={isAuth}
+                  setIsAuth={setIsAuth}
+                  mode={mode}
+                  setMode={setMode}
+                />
+              }>
+              {" "}
+              // This is what you add
+              <Route
+                exact
+                path="/"
+                element={
+                  <Home setIsAuth={setIsAuth} mode={mode} setMode={setMode} />
+                }
+              />
+              <Route
+                exact
+                path="/posts/:id"
+                setIsAuth={setIsAuth}
+                element={<SinglePostComponent />}></Route>
+              <Route path="/write" element={<Write isAuth={isAuth} />}></Route>
+              <Route path="/blog" element={<Blog />}></Route>
+              <Route
+                path="/interview-qa/node-js-interview-questions"
+                element={<Node />}></Route>
+              <Route
+                path="/interview-qa/react-js-interview-questions"
+                element={<React />}></Route>
+              <Route
+                path="/interview-qa/js-interview-questions"
+                element={<Javascript />}></Route>
+              {/* static pages */}
+              <Route path="/privacy-policy" element={<PrivacyPolicy />}></Route>
+              <Route path="/cookies-policy" element={<CookiesPolicy />}></Route>
+              <Route path="/data-policy" element={<DataSafety />}></Route>
+              <Route
+                path="/login"
+                element={<Login setIsAuth={setIsAuth} />}></Route>
+              <Route path="/register" element={<Register />}></Route>
+              <Route path="*" element={<NotFound />} />
+            </Route>{" "}
+            // The closing Route
+            {/* Admin Routes */}
             <Route path="/admin" element={<PrivateRoute />}>
+              {" "}
+              {/*need different Navbar for this route or no route at all for this but not the current Navbar */}
               <Route path="dashboard" element={<AdminDasboard />} />
               <Route path="posts" element={<Post />} />
               <Route path="posts/edit-post/:id" element={<EditPost />} />
-
               <Route path="categories" element={<CategoryComponent />} />
-
               <Route path="categories/add-category" element={<AddCategory />} />
               <Route
                 path="categories/edit-category/:id"

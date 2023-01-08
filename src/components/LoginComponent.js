@@ -45,8 +45,13 @@ const LoginComponent = (setIsAuth) => {
   const LoginWithGoogle = () => {
     signInWithPopup(auth, provider).then((result) => {
       setAuthentication(true, result.user);
+      // console.log(result.user.email === "shivshankarkumar.pusa@gmail.com");
+      if (result.user.email === "shivshankarkumar.pusa@gmail.com") {
+        navigate("/admin/dashboard");
+      } else {
+        navigate("/");
+      }
       // setIsAuth(true);
-      navigate("/");
     });
   };
 

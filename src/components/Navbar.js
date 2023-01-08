@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import {
   AppBar,
   styled,
@@ -289,6 +289,7 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
           </Stack>
         </StyledToolbar>
       </AppBar>
+      <Outlet />
     </Fragment>
   );
 };
