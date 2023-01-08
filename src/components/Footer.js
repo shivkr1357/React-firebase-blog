@@ -256,7 +256,7 @@ const Footer = () => {
         </Box>
       </Stack>
       <Typography color={"white"} align={"center"}>
-        Copyright &copy;{" itsindianguy.in"}
+        Copyright &copy; {new Date().getFullYear()} {" itsindianguy.in"}
       </Typography>
     </Box>
   );

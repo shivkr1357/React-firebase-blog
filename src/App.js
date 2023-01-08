@@ -2,6 +2,7 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import { Box } from "@mui/material";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AdminDasboard from "./components/Admin/AdminDasboard";
 import AddCategory from "./components/Category/AddCategory";
 import CategoryComponent from "./components/Category/CategoryComponent";
 import UpdateCategory from "./components/Category/UpdateCategory";
@@ -21,6 +22,7 @@ import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import AdminHome from "./pages/PrivateRoutes/AdminHome";
 import { PrivateRoute } from "./pages/PrivateRoutes/PrivateRoutes";
+import Register from "./pages/Register";
 import Write from "./pages/Write";
 
 const App = () => {
@@ -73,9 +75,11 @@ const App = () => {
             <Route
               path="/login"
               element={<Login setIsAuth={setIsAuth} />}></Route>
+            <Route path="/register" element={<Register />}></Route>
             <Route path="*" element={<NotFound />} />
 
             <Route path="/admin" element={<PrivateRoute />}>
+              <Route path="dashboard" element={<AdminDasboard />} />
               <Route path="posts" element={<Post />} />
               <Route path="posts/edit-post/:id" element={<EditPost />} />
 

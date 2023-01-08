@@ -27,15 +27,36 @@ import {
 import SocialMediaIcons from "./SocialMediaIcons";
 import { isAuthenticated } from "../helpers/auth";
 import { useState } from "react";
+import { signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../firebase-config";
 
-const SideDrawer = ({ openDrawer, setOpenDrawer, mode, setMode }) => {
+const SideDrawer = ({
+  openDrawer,
+  setOpenDrawer,
+  mode,
+  setMode,
+  setIsAuth,
+}) => {
   const [openCategory, setOpenCategory] = useState(false);
   const [openInterview, setOpenInterview] = useState(false);
+  const navigate = useNavigate();
+
   const handleCategoryClick = () => {
     setOpenCategory(!openCategory);
   };
   const handleInterviewClick = () => {
     setOpenInterview(!openInterview);
+  };
+  const handleLogout = () => {
+    signOut(auth).then(() => {
+      localStorage.clear();
+      sessionStorage.clear();
+      navigate("/login");
+      setIsAuth(false);
+    });
+
+    navigate("/");
   };
   return (
     <Drawer
@@ -182,7 +203,7 @@ const SideDrawer = ({ openDrawer, setOpenDrawer, mode, setMode }) => {
             </ListItemButton>
           </ListItem>
         )}
-        {!isAuthenticated() && (
+        {!isAuthenticated() ? (
           <Fragment>
             <ListItem disablePadding onClick={(e) => setOpenDrawer(false)}>
               <ListItemButton component="a" href="/login">
@@ -202,6 +223,19 @@ const SideDrawer = ({ openDrawer, setOpenDrawer, mode, setMode }) => {
               </ListItemButton>
             </ListItem> */}
           </Fragment>
+        ) : (
+          <ListItem disablePadding onClick={(e) => setOpenDrawer(false)}>
+            <ListItemButton
+              component="a"
+              onClick={() => {
+                handleLogout();
+              }}>
+              <ListItemIcon>
+                <Storefront />
+              </ListItemIcon>
+              <ListItemText primary="Logout" />
+            </ListItemButton>
+          </ListItem>
         )}
         <Divider />
         <ListItem disablePadding>

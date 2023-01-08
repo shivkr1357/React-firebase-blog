@@ -1,29 +1,31 @@
-import React from "react";
-
-import { auth, provider } from "../firebase-config";
+import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import {
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
   signInWithPopup,
+  updateProfile,
 } from "firebase/auth";
-
-import { useNavigate } from "react-router-dom";
-import { Stack, Box, Typography, TextField, Button } from "@mui/material";
-import { isAuthenticated, setAuthentication } from "../helpers/auth";
+import React from "react";
 import { useState } from "react";
-import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { auth, provider } from "../../firebase-config";
+import { setAuthentication } from "../../helpers/auth";
 
-const LoginComponent = (setIsAuth) => {
+const RegisterComponent = () => {
   const navigate = useNavigate();
 
   const [values, setValues] = useState({
+    name: "",
     email: "",
     password: "",
   });
   const [errMsg, setErrMsg] = useState("");
+  const [submitButtonDisabled, setSubmitButttonDisabled] = useState(false);
 
   const handleSubmit = () => {
-    if (!values.email) {
+    if (!values.name) {
+      setErrMsg("Please Fill the Name");
+      return;
+    } else if (!values.email) {
       setErrMsg("Please Fill the email");
       return;
     } else if (!values.password) {
@@ -31,10 +33,14 @@ const LoginComponent = (setIsAuth) => {
       return;
     } else {
       setErrMsg("");
-      signInWithEmailAndPassword(auth, values.email, values.password)
-        .then((res) => {
-          setAuthentication(true, res.user);
-          navigate("/");
+      setSubmitButttonDisabled(true);
+
+      createUserWithEmailAndPassword(auth, values.email, values.password)
+        .then(async (res) => {
+          console.log(res);
+          const user = res.user;
+          await updateProfile(user, { displayName: values.name });
+          navigate("/login");
         })
         .catch((err) => {
           console.log(err);
@@ -49,13 +55,6 @@ const LoginComponent = (setIsAuth) => {
       navigate("/");
     });
   };
-
-  useEffect(() => {
-    if (isAuthenticated()) {
-      navigate("/");
-    }
-  });
-
   return (
     <Stack
       spacing={2}
@@ -69,12 +68,12 @@ const LoginComponent = (setIsAuth) => {
           margin: { xs: "10px", sm: "10px", md: "0px" },
           padding: { xs: "20px", sm: "20px", md: "20px" },
           width: { xs: "80%", sm: "80%", md: "400px" },
-          height: "100%",
+          height: { xs: "100%", sm: "100%", md: "100%" },
           background: "white",
           borderRadius: "5px",
         }}>
         <Typography variant="h2" align="center" p={2}>
-          <strong style={{ fontWeight: "400" }}>Login</strong>
+          <strong style={{ fontWeight: "400" }}>Register</strong>
         </Typography>
         <Stack p={2} spacing={2}>
           <Box
@@ -90,9 +89,19 @@ const LoginComponent = (setIsAuth) => {
           </Box>
           <TextField
             type="text"
+            name="name"
+            label="Name"
+            placeholder="Username..."
+            variant="outlined"
+            onChange={(e) => {
+              setValues((prev) => ({ ...prev, name: e.target.value }));
+            }}
+          />
+          <TextField
+            type="text"
             name="email"
             label="Email"
-            placeholder="Enter Your Email..."
+            placeholder="Email..."
             variant="outlined"
             onChange={(e) => {
               setValues((prev) => ({ ...prev, email: e.target.value }));
@@ -103,22 +112,25 @@ const LoginComponent = (setIsAuth) => {
             type="password"
             name="password"
             label="Password"
-            placeholder="Enter Your password..."
+            placeholder="Password..."
             variant="outlined"
             onChange={(e) => {
               setValues((prev) => ({ ...prev, password: e.target.value }));
             }}
           />
 
-          <Button variant="contained" onClick={handleSubmit}>
-            Login
+          <Button
+            variant="contained"
+            onClick={handleSubmit}
+            disabled={submitButtonDisabled}>
+            Register
           </Button>
 
           <Typography>
-            New Here ?{" "}
+            Already have an account ?{" "}
             <Typography
               component="a"
-              onClick={() => navigate("/register")}
+              onClick={() => navigate("/login")}
               sx={{
                 textDecoration: "none",
                 fontSize: "20px",
@@ -126,7 +138,7 @@ const LoginComponent = (setIsAuth) => {
                 color: "#9900ff",
                 cursor: "pointer",
               }}>
-              SignUp
+              login
             </Typography>
           </Typography>
           <Box
@@ -193,4 +205,4 @@ const LoginComponent = (setIsAuth) => {
   );
 };
 
-export default LoginComponent;
+export default RegisterComponent;
