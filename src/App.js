@@ -2,7 +2,7 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import { Box } from "@mui/material";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import AdminDasboard from "./components/Admin/AdminDasboard";
+// import AdminDasboard from "./components/Admin/AdminDasboard";
 import AddCategory from "./components/Category/AddCategory";
 import CategoryComponent from "./components/Category/CategoryComponent";
 import UpdateCategory from "./components/Category/UpdateCategory";
@@ -20,7 +20,6 @@ import Node from "./pages/Interview Q/Node";
 import React from "./pages/Interview Q/ReactFile";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
-import AdminHome from "./pages/PrivateRoutes/AdminHome";
 import { PrivateRoute } from "./pages/PrivateRoutes/PrivateRoutes";
 import Register from "./pages/Register";
 import Write from "./pages/Write";
@@ -33,6 +32,7 @@ const App = () => {
       mode: mode,
     },
   });
+
   return (
     <Router>
       <ThemeProvider theme={darkTheme}>
@@ -48,8 +48,6 @@ const App = () => {
                   setMode={setMode}
                 />
               }>
-              {" "}
-              // This is what you add
               <Route
                 exact
                 path="/"
@@ -82,13 +80,10 @@ const App = () => {
                 element={<Login setIsAuth={setIsAuth} />}></Route>
               <Route path="/register" element={<Register />}></Route>
               <Route path="*" element={<NotFound />} />
-            </Route>{" "}
-            // The closing Route
+            </Route>
             {/* Admin Routes */}
             <Route path="/admin" element={<PrivateRoute />}>
-              {" "}
-              {/*need different Navbar for this route or no route at all for this but not the current Navbar */}
-              <Route path="dashboard" element={<AdminDasboard />} />
+              {/* <Route path="dashboard" element={<AdminDasboard />} /> */}
               <Route path="posts" element={<Post />} />
               <Route path="posts/edit-post/:id" element={<EditPost />} />
               <Route path="categories" element={<CategoryComponent />} />

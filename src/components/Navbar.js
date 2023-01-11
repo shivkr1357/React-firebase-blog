@@ -4,7 +4,6 @@ import {
   styled,
   Toolbar,
   Box,
-  InputBase,
   Button,
   Stack,
   MenuItem,
@@ -31,9 +30,9 @@ const Search = styled("div")(({ theme }) => ({
   backgroundColor: "white",
   padding: "0 10px",
   borderRadius: theme.shape.borderRadius,
-  "::-webkit-input-placeholder": {
-    color: "white",
-  },
+  // "::-webkit-input-placeholder": {
+  //   color: "white",
+  // },
   width: "80%",
   [theme.breakpoints.up("sm")]: {
     width: "40%",
