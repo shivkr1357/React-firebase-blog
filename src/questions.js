@@ -126,6 +126,36 @@ export const nodeQuestions = [
     que: "How to work with directories in the Node.js?",
     ans: "Module <b>fs</b> which realize interaction in Node.js allow sync and async operations with folders. To create and delete files in synchronous mode there are <b>fs.mkdirSync()</b> and <b>fs.unlinkSync()</b> methods, while in async these can be done with <b>fs.mkdir() </b> and <b>fs.unlink() </b> . To get a list of files in a folder can be used synchronous method <b>fs.readdirSync()</b> or asynchronous method <b>fs.readdir()</b>.",
   },
+  {
+    id: 5,
+    que: "How to work with files in in Node.js?",
+    ans: "In Node.js input/output operations are realized in the fs module, which support synchronous and asynchronous operations. Key commands for sync interaction with files:<br> <b>fs.writeFileSync(file, data, option) </b> - create 'file' with 'data' <br> <b>fs.unlinkSync (path) </b> - delete file located on 'path'<br><b>fs.readFileSync (path, option) </b> - open and read file on 'path'<br> Key commands for async interaction with files:<br> <b>fs.writeFile(file, data, options, callback)</b> - creation 'file' with 'name'<br> <b>fs.unlink(path, callback)</b> - file deletion located on 'path' <br> <b>fs.readFile(path, option)</b> - open and read file on 'path'",
+  },
+  {
+    id: 6,
+    que: "What are the streams in Node.js?",
+    ans: "Streams in Node.js are used for sequential reading and writing data in files. It is most usable for working with large files, as streams don't open the whole file, which is good for device memory usage. Instead of this, it reads (or writes) files step-by-step according to part of the file requested by the developer.",
+  },
+  {
+    id: 7,
+    que: "What is callback hell in Node.js?",
+    ans: "As Node.js supports asynchronous operations, there can appear issues with callbacks execution orders. Developers who use complex callbacks must predict how to detect and avoid situations when script launches an <b>async </b> callback which requires data from other callbacks which doesn't finished execution yet.",
+  },
+  {
+    id: 8,
+    que: "What is the difference between dependencies and devDependencies in Node.js?",
+    ans: "Both are a kind of package used for development. Packages required for application working after release must be installed as a - 'dependencies', while packages required only for development or testing as a - 'devDependencies'. The last one wouldn't be included in the product release.",
+  },
+  {
+    id: 9,
+    que: "How are 'Child Threads' handled in Node.js?",
+    ans: "Child threads in Node.js can be handled with <b>clild_process</b> and <b>worker_threads </b> modules. The first one allows creating a child process inside the node, while the <b> worker_threads</b> can be used for parallel threads organization.",
+  },
+  {
+    id: 10,
+    que: " Is Node a single threaded application?",
+    ans: "Yes, because it was developed for asynchronous operations, which as expected doesn't require multiple threads.",
+  },
 ];
 export const jsQuestions = [
   {

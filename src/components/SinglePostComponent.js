@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase-config";
 import Footer from "./Footer";
+import { renderHTML } from "../helpers/renderHTML";
 
 const SinglePostComponent = () => {
   const { id } = useParams();
@@ -57,7 +58,7 @@ const SinglePostComponent = () => {
                 fontSize: "16px",
                 whiteSpace: "pre-line",
               }}>
-              {post ? post.desc : ""}
+              {renderHTML(post ? post.desc : "")}
             </Box>
             <Box>
               <Stack

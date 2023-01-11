@@ -11,6 +11,7 @@ import {
   Switch,
   ListSubheader,
   Divider,
+  Collapse,
 } from "@mui/material";
 import {
   Article,
@@ -19,11 +20,44 @@ import {
   ModeNight,
   Storefront,
   Close,
+  ExpandLess,
+  ExpandMore,
+  StarBorder,
 } from "@mui/icons-material";
 import SocialMediaIcons from "./SocialMediaIcons";
 import { isAuthenticated } from "../helpers/auth";
+import { useState } from "react";
+import { signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../firebase-config";
 
-const SideDrawer = ({ openDrawer, setOpenDrawer, mode, setMode }) => {
+const SideDrawer = ({
+  openDrawer,
+  setOpenDrawer,
+  mode,
+  setMode,
+  setIsAuth,
+}) => {
+  const [openCategory, setOpenCategory] = useState(false);
+  const [openInterview, setOpenInterview] = useState(false);
+  const navigate = useNavigate();
+
+  const handleCategoryClick = () => {
+    setOpenCategory(!openCategory);
+  };
+  const handleInterviewClick = () => {
+    setOpenInterview(!openInterview);
+  };
+  const handleLogout = () => {
+    signOut(auth).then(() => {
+      localStorage.clear();
+      sessionStorage.clear();
+      navigate("/login");
+      setIsAuth(false);
+    });
+
+    navigate("/");
+  };
   return (
     <Drawer
       open={openDrawer}
@@ -65,44 +99,92 @@ const SideDrawer = ({ openDrawer, setOpenDrawer, mode, setMode }) => {
             <ListItemText primary="Homepage" />
           </ListItemButton>
         </ListItem>
-        <ListItem disablePadding onClick={(e) => setOpenDrawer(false)}>
+
+        {/* <ListItem disablePadding onClick={(e) => setOpenDrawer(false)}>
           <ListItemButton component="a" href="/write">
             <ListItemIcon>
               <Article />
             </ListItemIcon>
             <ListItemText primary="Write" />
           </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding onClick={(e) => setOpenDrawer(false)}>
-          <ListItemButton
-            component="a"
-            href="/interview-qa/js-interview-questions">
+        </ListItem> */}
+        {isAuthenticated() && (
+          <Fragment>
+            <ListItem disablePadding>
+              <ListItemButton
+                component="a"
+                href="/categories/get-all-categories">
+                <ListItemIcon>
+                  <Article />
+                </ListItemIcon>
+                <ListItemText primary="Categories" />
+                {openCategory ? (
+                  <ExpandLess onClick={handleCategoryClick} />
+                ) : (
+                  <ExpandMore onClick={handleCategoryClick} />
+                )}
+              </ListItemButton>
+            </ListItem>
+            <Collapse in={openCategory} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <ListItemButton
+                  sx={{ pl: 4 }}
+                  component="a"
+                  href="/categories/add-category">
+                  <ListItemIcon>
+                    <StarBorder />
+                  </ListItemIcon>
+                  <ListItemText primary="Add Category" />
+                </ListItemButton>
+              </List>
+            </Collapse>
+          </Fragment>
+        )}
+        <ListItem disablePadding>
+          <ListItemButton>
             <ListItemIcon>
               <Article />
             </ListItemIcon>
-            <ListItemText primary="Javascript Interview Q/A" />
+            <ListItemText primary="Interview Q/A" />
+            {openInterview ? (
+              <ExpandLess onClick={handleInterviewClick} />
+            ) : (
+              <ExpandMore onClick={handleInterviewClick} />
+            )}
           </ListItemButton>
         </ListItem>
-        <ListItem disablePadding onClick={(e) => setOpenDrawer(false)}>
-          <ListItemButton
-            component="a"
-            href="/interview-qa/react-js-interview-questions">
-            <ListItemIcon>
-              <Article />
-            </ListItemIcon>
-            <ListItemText primary="React Js Interview Q/A" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding onClick={(e) => setOpenDrawer(false)}>
-          <ListItemButton
-            component="a"
-            href="/interview-qa/node-js-interview-questions">
-            <ListItemIcon>
-              <Article />
-            </ListItemIcon>
-            <ListItemText primary="Node Js Interview Q/A" />
-          </ListItemButton>
-        </ListItem>
+        <Collapse in={openInterview} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItemButton
+              sx={{ pl: 4 }}
+              component="a"
+              href="/interview-qa/js-interview-questions">
+              <ListItemIcon>
+                <StarBorder />
+              </ListItemIcon>
+              <ListItemText primary="Core JavaScript" />
+            </ListItemButton>
+            <ListItemButton
+              sx={{ pl: 4 }}
+              component="a"
+              href="/interview-qa/react-js-interview-questions">
+              <ListItemIcon>
+                <StarBorder />
+              </ListItemIcon>
+              <ListItemText primary="React Js" />
+            </ListItemButton>
+            <ListItemButton
+              sx={{ pl: 4 }}
+              component="a"
+              href="/interview-qa/node-js-interview-questions">
+              <ListItemIcon>
+                <StarBorder />
+              </ListItemIcon>
+              <ListItemText primary="Node Js" />
+            </ListItemButton>
+          </List>
+        </Collapse>
+
         {/* <ListItem disablePadding onClick={(e) => setOpenDrawer(false)}>
           <ListItemButton component="a" href="#simple-list">
             <ListItemIcon>
@@ -121,7 +203,7 @@ const SideDrawer = ({ openDrawer, setOpenDrawer, mode, setMode }) => {
             </ListItemButton>
           </ListItem>
         )}
-        {!isAuthenticated() && (
+        {!isAuthenticated() ? (
           <Fragment>
             <ListItem disablePadding onClick={(e) => setOpenDrawer(false)}>
               <ListItemButton component="a" href="/login">
@@ -141,6 +223,19 @@ const SideDrawer = ({ openDrawer, setOpenDrawer, mode, setMode }) => {
               </ListItemButton>
             </ListItem> */}
           </Fragment>
+        ) : (
+          <ListItem disablePadding onClick={(e) => setOpenDrawer(false)}>
+            <ListItemButton
+              component="a"
+              onClick={() => {
+                handleLogout();
+              }}>
+              <ListItemIcon>
+                <Storefront />
+              </ListItemIcon>
+              <ListItemText primary="Logout" />
+            </ListItemButton>
+          </ListItem>
         )}
         <Divider />
         <ListItem disablePadding>

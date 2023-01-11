@@ -1,15 +1,15 @@
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import {
   AppBar,
   styled,
   Toolbar,
-  Typography,
   Box,
-  InputBase,
   Button,
   Stack,
   MenuItem,
   Menu,
+  TextField,
+  Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { signOut } from "firebase/auth";
@@ -17,6 +17,9 @@ import { auth } from "../firebase-config";
 import SideDrawer from "./SideDrawer";
 import { Fragment, useState } from "react";
 import { isAuthenticated } from "../helpers/auth";
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import { useEffect } from "react";
+import { getLocalStorage } from "../helpers/localStorage";
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -27,9 +30,9 @@ const Search = styled("div")(({ theme }) => ({
   backgroundColor: "white",
   padding: "0 10px",
   borderRadius: theme.shape.borderRadius,
-  "::-webkit-input-placeholder": {
-    color: "white",
-  },
+  // "::-webkit-input-placeholder": {
+  //   color: "white",
+  // },
   width: "80%",
   [theme.breakpoints.up("sm")]: {
     width: "40%",
@@ -62,6 +65,11 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
     setOpen(false);
   };
 
+  useEffect(() => {
+    if (isAuthenticated()) {
+    }
+  });
+
   return (
     <Fragment>
       <SideDrawer
@@ -69,13 +77,32 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
         setOpenDrawer={setOpenDrawer}
         mode={mode}
         setMode={setMode}
+        setIsAuth={setIsAuth}
       />
       <AppBar
         position="sticky"
         sx={{
+          marginLeft: "0px",
           "background-image": "linear-gradient(to right, #00395d, #8f8f8c)",
         }}>
         <StyledToolbar>
+          <Box
+            sx={{
+              justifyContent: "center",
+              alignItems: "center",
+              cursor: "pointer",
+              display: { xs: "flex", sm: "none" },
+            }}>
+            <MenuIcon
+              onClick={(e) => setOpenDrawer(true)}
+              sx={{
+                display: { xs: "block", sm: "none" },
+                marginRight: "10px",
+                marginLeft: "0px",
+                cursor: "pointer",
+              }}
+            />
+          </Box>
           <Stack
             spacing={2}
             direction="row"
@@ -91,14 +118,19 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
               onClose={handleRequestClose}
               aria-owns={open ? "simple-menu" : null}
               aria-haspopup="true"
-              onMouseOver={handleClick}>
-              Interview Q/A
+              onClick={handleClick}>
+              Interview Q/A{" "}
+              {open ? (
+                <ExpandLess onClick={handleClick} />
+              ) : (
+                <ExpandMore onClick={handleClick} />
+              )}
             </Button>
             <Menu
               id="simple-menu"
               anchorEl={anchorEl}
               open={open}
-              onRequestClose={handleRequestClose}
+              onClose={handleRequestClose}
               // onChange={handleChange}
             >
               <MenuItem
@@ -108,7 +140,7 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
                   navigate("/interview-qa/js-interview-questions");
                   window.scrollTo(0, 0);
                 }}>
-                JavaScript Interview Q/A (Coming Soon )
+                JavaScript Interview Q/A
               </MenuItem>
               <MenuItem
                 value={20}
@@ -117,7 +149,7 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
                   navigate("/interview-qa/react-js-interview-questions");
                   window.scrollTo(0, 0);
                 }}>
-                React Js Interview Q/A (Coming Soon )
+                React Js Interview Q/A
               </MenuItem>
               <MenuItem
                 value=""
@@ -126,9 +158,24 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
                   navigate("/interview-qa/node-js-interview-questions");
                   window.scrollTo(0, 0);
                 }}>
-                Node Js Interview Q/A (Coming Soon )
+                Node Js Interview Q/A
               </MenuItem>
             </Menu>
+            {isAuthenticated() && (
+              <Button
+                variant="text"
+                onClick={() => {
+                  navigate("/admin/categories");
+                }}
+                sx={{
+                  width: "contained",
+                  cursor: "pointer",
+                  color: "white",
+                  fontWeight: 600,
+                }}>
+                Categories
+              </Button>
+            )}
 
             <Button
               variant="text"
@@ -189,55 +236,59 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
               </Button>
             )}
           </Stack>
-
-          <Search sx={{ display: { xs: "none", sm: "block" } }}>
-            <InputBase
-              name="search"
-              id="search"
-              color="success"
-              placeholder="Search Itsindianguy ( Coming Soon ) "
+          <Box sx={{ height: "50%" }}>
+            <TextField
+              sx={{
+                height: "10%",
+                width: "400px",
+                margin: "10px",
+                display: { xs: "none", sm: "none", md: "flex" },
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: "white",
+                borderRadius: "10px",
+              }}
+              id="full-width-text-field"
+              placeholder="Search Posts..."
+              fullWidth
             />
-          </Search>
+          </Box>
 
-          {/* {!isAuthenticated() && ( */}
-          <Box
+          <Stack
+            direction="row"
             sx={{
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              cursor: "pointer",
-              display: { xs: "block", sm: "none" },
+              padding: "10px",
+              marginLeft: "0",
             }}>
-            <MenuIcon
-              onClick={(e) => setOpenDrawer(true)}
-              sx={{
-                display: { xs: "block", sm: "none" },
-                marginRight: "10px",
+            <Typography sx={{ marginRight: "5px" }}>
+              {getLocalStorage("user")?.displayName}
+            </Typography>
+            <img
+              src="/newLogo.png"
+              alt="Logo"
+              style={{
+                margin: 0,
+                padding: 0,
+                width: { xs: "5px", sm: "20px", md: "50px" },
+                height: "50px",
+                objectFit: "cover",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
                 cursor: "pointer",
+                borderRadius: "50%",
+              }}
+              onClick={() => {
+                navigate("/");
               }}
             />
-          </Box>
-          <img
-            src="/newLogo.png"
-            alt="Logo"
-            style={{
-              margin: 0,
-              padding: 0,
-              width: { xs: "5px", sm: "20px", md: "50px" },
-              height: "50px",
-              objectFit: "cover",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              cursor: "pointer",
-              borderRadius: "50%",
-            }}
-            onClick={() => {
-              navigate("/");
-            }}
-          />
+          </Stack>
         </StyledToolbar>
       </AppBar>
+      <Outlet />
     </Fragment>
   );
 };

@@ -1,31 +1,39 @@
 import {
+  Autocomplete,
   Box,
   Button,
   Stack,
   TextField,
   Typography,
-  Autocomplete,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
-
 import {
   addDoc,
   collection,
-  serverTimestamp,
+  doc,
+  getDoc,
   getDocs,
   orderBy,
   query,
+  serverTimestamp,
+  updateDoc,
 } from "firebase/firestore";
+import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { auth, db } from "../../firebase-config";
 
-import { auth, db } from "../firebase-config";
-import { useNavigate } from "react-router-dom";
+const EditPost = ({ isAuth }) => {
+  const req = useParams();
 
-const WriteComponent = ({ isAuth }) => {
+  const id = req.id;
+
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [category, setCategory] = useState([]);
   const [newCategory, setNewCategory] = useState([]);
+  // const [categoryName, setCategoryName] = useState("");
   const [value, setValue] = useState();
 
   const categoryCollectionRef = query(
@@ -33,10 +41,10 @@ const WriteComponent = ({ isAuth }) => {
     orderBy("created", "desc")
   );
 
-  const postCollectionRef = collection(db, "posts");
+  const postDocRef = doc(db, "posts", id);
 
-  const createPost = async () => {
-    await addDoc(postCollectionRef, {
+  const updatePost = async () => {
+    await updateDoc(postDocRef, {
       title,
       desc,
       category: newCategory,
@@ -50,18 +58,26 @@ const WriteComponent = ({ isAuth }) => {
     if (!localStorage.getItem("isAuth")) {
       navigate("/login");
     }
+    const getPost = async () => {
+      const docSnap = await getDoc(postDocRef);
+
+      setTitle(docSnap.data().title);
+      setDesc(docSnap.data().desc);
+      setValue(docSnap.data().category?.map((cat) => cat.name));
+    };
     const getAllCategory = async () => {
       const data = await getDocs(categoryCollectionRef);
 
       setCategory(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getAllCategory();
+    getPost();
   }, []);
 
   return (
     <Box flex={4} sx={{ padding: { xs: "0", sm: "50px 20px " } }}>
       <Typography variant="h3" component="h3">
-        Create A Post
+        Update Post
       </Typography>
 
       <form style={{ position: "relative", marginTop: "50px" }}>
@@ -94,6 +110,7 @@ const WriteComponent = ({ isAuth }) => {
               label="Post Title"
               variant="outlined"
               name="title"
+              value={title}
               onChange={(e) => {
                 setTitle(e.target.value);
               }}
@@ -108,6 +125,7 @@ const WriteComponent = ({ isAuth }) => {
               multiline
               rows={10}
               name="desc"
+              value={desc}
               onChange={(e) => {
                 setDesc(e.target.value);
               }}
@@ -117,7 +135,7 @@ const WriteComponent = ({ isAuth }) => {
         <Button
           variant="contained"
           sx={{ marginTop: "20px", marginRight: "20px" }}
-          onClick={createPost}>
+          onClick={updatePost}>
           Publish
         </Button>
         <Button
@@ -126,11 +144,11 @@ const WriteComponent = ({ isAuth }) => {
           Cancel
         </Button>
         {/* <Button variant="outlined" color="secondary" sx={{ marginTop: "20px" }}>
-          Save Draft
-        </Button> */}
+      Save Draft
+    </Button> */}
       </form>
     </Box>
   );
 };
 
-export default WriteComponent;
+export default EditPost;

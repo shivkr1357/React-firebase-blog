@@ -1,23 +1,21 @@
 import { Box } from "@mui/material";
 import React from "react";
-import LoginComponent from "../components/LoginComponent";
+import RegisterComponent from "../components/Auth/RegisterComponent";
 
-const Login = ({ setIsAuth }) => {
+const Register = ({ setIsAuth }) => {
   return (
     <Box
       flex={4}
       sx={{
         // padding: {
         //   xs: "0",
-        //   sm: "0px 20px ",
+        //   sm: "50px 20px ",
         // },
         backgroundImage: "linear-gradient(to right, #9900ff, #cc80ff)",
-        minHeight: "560px",
-        height: "100%",
       }}>
-      <LoginComponent setIsAuth={setIsAuth} />
+      <RegisterComponent />
     </Box>
   );
 };
 
-export default Login;
+export default Register;

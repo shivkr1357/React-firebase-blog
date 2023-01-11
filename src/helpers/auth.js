@@ -10,19 +10,25 @@ import {
   setSessionStorage,
   deleteSessionStorage,
 } from "./session";
+import { auth } from "../firebase-config";
 
-export const setAuthentication = (isAuth, user) => {
-  setCookie("isAuth", isAuth);
-  setLocalStorage("isAuth", isAuth);
-  setLocalStorage("user", user);
-  setSessionStorage("isAuth", isAuth);
+export const setAuthentication = (isAuth, userGoogle) => {
+  console.log();
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      setCookie("isAuth", isAuth);
+      setLocalStorage("isAuth", isAuth);
+      setLocalStorage("user", user);
+      setSessionStorage("isAuth", isAuth);
+    }
+  });
 };
 
 export const isAuthenticated = () => {
   if (
-    getCookie("isAuth") &&
+    getLocalStorage("user") &&
     getLocalStorage("isAuth") &&
-    getSessionStorage("isAuth")
+    getLocalStorage("isAuth") === true
   ) {
     return true;
   } else {

@@ -63,7 +63,7 @@ const LandingPage = () => {
       </Typography>
       <Box
         sx={{
-          backgroundImage: `url(${backgroundImage})`,
+          backgroundImage: `linear-gradient(to right, #9900ff, #cc80ff)`,
           width: "100%",
           height: 600,
           backgroundRepeat: "no-repeat",
