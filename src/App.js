@@ -39,16 +39,13 @@ const App = () => {
       <ThemeProvider theme={darkTheme}>
         <Box bgcolor={"background.default"} color={"text.primary"}>
           <Routes>
-            <Route
-              path="/"
-              element={
-                <Navbar // This is showing in all routes nested inside it
-                  isAuth={isAuth}
-                  setIsAuth={setIsAuth}
-                  mode={mode}
-                  setMode={setMode}
-                />
-              }>
+            <Navbar // This is showing in all routes nested inside it
+              isAuth={isAuth}
+              setIsAuth={setIsAuth}
+              mode={mode}
+              setMode={setMode}
+            />
+            <Route>
               <Route
                 exact
                 path="/"
@@ -81,7 +78,7 @@ const App = () => {
                 path="/login"
                 element={<Login setIsAuth={setIsAuth} />}></Route>
               <Route path="/register" element={<Register />}></Route>
-              <Route path="*" element={<NotFound />} />
+              {/* <Route path="*" element={<NotFound />} /> */}
             </Route>
             {/* Admin Routes */}
             <Route path="/admin" element={<PrivateRoute />}>
