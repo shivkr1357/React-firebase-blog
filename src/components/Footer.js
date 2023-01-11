@@ -71,7 +71,7 @@ const Footer = () => {
               align={"center"}
               sx={{ cursor: "pointer" }}
               onClick={() => {
-                navigate("/");
+                navigate("/contact-us");
                 window.scrollTo(0, 0);
               }}>
               Contact Us

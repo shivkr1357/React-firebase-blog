@@ -14,6 +14,7 @@ import Post from "./components/Posts/Post";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import SinglePostComponent from "./components/SinglePostComponent";
 import Blog from "./pages/Blog";
+import ContactUs from "./pages/ContactUs";
 import Home from "./pages/Home";
 import Javascript from "./pages/Interview Q/Javascript";
 import Node from "./pages/Interview Q/Node";
@@ -75,6 +76,7 @@ const App = () => {
               <Route path="/privacy-policy" element={<PrivacyPolicy />}></Route>
               <Route path="/cookies-policy" element={<CookiesPolicy />}></Route>
               <Route path="/data-policy" element={<DataSafety />}></Route>
+              <Route path="/contact-us" element={<ContactUs />}></Route>
               <Route
                 path="/login"
                 element={<Login setIsAuth={setIsAuth} />}></Route>
