@@ -161,21 +161,6 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
                 Node Js Interview Q/A
               </MenuItem>
             </Menu>
-            {isAuthenticated() && (
-              <Button
-                variant="text"
-                onClick={() => {
-                  navigate("/admin/categories");
-                }}
-                sx={{
-                  width: "contained",
-                  cursor: "pointer",
-                  color: "white",
-                  fontWeight: 600,
-                }}>
-                Categories
-              </Button>
-            )}
 
             <Button
               variant="text"
