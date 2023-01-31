@@ -1,10 +1,8 @@
 import { Box } from "@mui/material";
 import { Stack } from "@mui/system";
 import { Fragment } from "react";
-// import AboutComponent from "../components/AboutComponent";
 import Footer from "../components/Footer";
-// import HomeComponent from "../components/HomeComponent";
-import LandingPage from "../components/LandingPage";
+import LandingPage from "../components/LangingPage/LandingPage";
 
 const Home = ({ mode, setMode, setIsAuth }) => {
   return (

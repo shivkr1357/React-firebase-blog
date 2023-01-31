@@ -10,10 +10,11 @@ import {
   serverTimestamp,
   updateDoc,
 } from "firebase/firestore";
-import { db } from "../firebase-config";
+import { db } from "../../firebase-config";
+import Services from "./Services";
+import InterviewLinks from "./InterviewLinks";
 
 const LandingPage = () => {
-  const navigate = useNavigate();
   const [visitor, setVisitor] = useState(0);
   const visitorCollectionRef = collection(db, "visitor_counter");
 
@@ -77,44 +78,8 @@ const LandingPage = () => {
             width: { xs: "100%", sm: "50%", md: "40%" },
             padding: { xs: 2, sm: 3, md: 5 },
           }}>
-          <Box
-            sx={{
-              background: "white",
-              opacity: 0.9,
-              borderRadius: "10px",
-              marginTop: "30px",
-            }}>
-            <Typography
-              align="center"
-              variant="h1"
-              p={2}
-              pt={8}
-              sx={{ fontSize: "20px", fontFamily: "Roboto", cursor: "pointer" }}
-              onClick={() => navigate("/interview-qa/js-interview-questions")}>
-              Top INTERVIEW QUESTIONS of the JAVASCRIPT
-            </Typography>
-            <Typography
-              align="center"
-              variant="h2"
-              sx={{ fontSize: "20px", fontFamily: "Roboto", cursor: "pointer" }}
-              p={2}
-              onClick={() =>
-                navigate("/interview-qa/react-js-interview-questions")
-              }>
-              Top INTERVIEW QUESTIONS the React Js
-            </Typography>
-            <Typography
-              align="center"
-              variant="h3"
-              sx={{ fontSize: "20px", fontFamily: "Roboto", cursor: "pointer" }}
-              p={2}
-              pb={8}
-              onClick={() =>
-                navigate("/interview-qa/node-js-interview-questions")
-              }>
-              Top INTERVIEW QUESTIONS of the Node Js
-            </Typography>
-          </Box>
+          <InterviewLinks />
+          <Services />
         </Box>
       </Box>
     </Box>

@@ -32,10 +32,6 @@ const HomeComponent = ({ setIsAuth, mode, setMode }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // if (isAuthenticated()) {
-    //   setIsAuth(true);
-    // }
-
     const getPosts = async () => {
       const data = await getDocs(postCollectionRef);
 
@@ -43,7 +39,7 @@ const HomeComponent = ({ setIsAuth, mode, setMode }) => {
     };
 
     getPosts();
-  }, [postCollectionRef]);
+  }, []);
 
   return (
     <Box
@@ -61,7 +57,7 @@ const HomeComponent = ({ setIsAuth, mode, setMode }) => {
           const newDate = `${formattedDate} ${formattedTime}`;
           return (
             <Card
-              key={post._id}
+              key={post.id}
               sx={{ marginBottom: "20px", boxShadow: "-moz-initial" }}>
               <CardHeader
                 avatar={
@@ -126,9 +122,6 @@ const HomeComponent = ({ setIsAuth, mode, setMode }) => {
                   whiteSpace: "pre-line",
                 }}>
                 <SmartText text={capitalize(post.desc)} />
-                {/* <Typography variant="body2" color="text.secondary">
-                {post.desc}
-              </Typography> */}
               </CardContent>
               <CardActions disableSpacing>
                 <IconButton aria-label="add to favorites">
