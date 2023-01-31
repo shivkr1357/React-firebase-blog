@@ -1,15 +1,11 @@
-import { setCookie, getCookie, deleteCookie } from "./cookies";
+import { setCookie, deleteCookie } from "./cookies";
 import {
   setLocalStorage,
   getLocalStorage,
   deleteLocalStorage,
 } from "./localStorage";
 
-import {
-  getSessionStorage,
-  setSessionStorage,
-  deleteSessionStorage,
-} from "./session";
+import { setSessionStorage, deleteSessionStorage } from "./session";
 import { auth } from "../firebase-config";
 
 export const setAuthentication = (isAuth, userGoogle) => {

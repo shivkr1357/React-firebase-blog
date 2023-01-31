@@ -29,7 +29,7 @@ const UpdateCategory = () => {
     };
 
     getAllCategory();
-  }, []);
+  }, [categoryDocRef]);
   return (
     <Fragment>
       <Stack direction="row">

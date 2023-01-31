@@ -7,7 +7,6 @@ import {
   Typography,
 } from "@mui/material";
 import {
-  addDoc,
   collection,
   doc,
   getDoc,
@@ -72,7 +71,7 @@ const EditPost = ({ isAuth }) => {
     };
     getAllCategory();
     getPost();
-  }, []);
+  }, [navigate, postDocRef, categoryCollectionRef]);
 
   return (
     <Box flex={4} sx={{ padding: { xs: "0", sm: "50px 20px " } }}>

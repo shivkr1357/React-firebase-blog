@@ -82,7 +82,7 @@ const CategoryComponent = () => {
     };
 
     getAllCategory();
-  }, [selDeleteCategory]);
+  }, [categoryCollectionRef]);
   return (
     <Fragment>
       <Stack direction="row">
