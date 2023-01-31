@@ -43,7 +43,7 @@ const HomeComponent = ({ setIsAuth, mode, setMode }) => {
     };
 
     getPosts();
-  }, []);
+  }, [postCollectionRef]);
 
   return (
     <Box
@@ -61,7 +61,7 @@ const HomeComponent = ({ setIsAuth, mode, setMode }) => {
           const newDate = `${formattedDate} ${formattedTime}`;
           return (
             <Card
-              key={key}
+              key={post._id}
               sx={{ marginBottom: "20px", boxShadow: "-moz-initial" }}>
               <CardHeader
                 avatar={

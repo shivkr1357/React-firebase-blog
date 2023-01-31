@@ -26,18 +26,18 @@ const StyledToolbar = styled(Toolbar)({
   justifyContent: "space-between",
 });
 
-const Search = styled("div")(({ theme }) => ({
-  backgroundColor: "white",
-  padding: "0 10px",
-  borderRadius: theme.shape.borderRadius,
-  // "::-webkit-input-placeholder": {
-  //   color: "white",
-  // },
-  width: "80%",
-  [theme.breakpoints.up("sm")]: {
-    width: "40%",
-  },
-}));
+// const Search = styled("div")(({ theme }) => ({
+//   backgroundColor: "white",
+//   padding: "0 10px",
+//   borderRadius: theme.shape.borderRadius,
+//   // "::-webkit-input-placeholder": {
+//   //   color: "white",
+//   // },
+//   width: "80%",
+//   [theme.breakpoints.up("sm")]: {
+//     width: "40%",
+//   },
+// }));
 
 const Navbar = ({ setIsAuth, mode, setMode }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -161,21 +161,6 @@ const Navbar = ({ setIsAuth, mode, setMode }) => {
                 Node Js Interview Q/A
               </MenuItem>
             </Menu>
-            {isAuthenticated() && (
-              <Button
-                variant="text"
-                onClick={() => {
-                  navigate("/admin/categories");
-                }}
-                sx={{
-                  width: "contained",
-                  cursor: "pointer",
-                  color: "white",
-                  fontWeight: 600,
-                }}>
-                Categories
-              </Button>
-            )}
 
             <Button
               variant="text"

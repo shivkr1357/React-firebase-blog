@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-import backgroundImage from "../static/backgroundImage.jpg";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -39,7 +38,7 @@ const LandingPage = () => {
       }
     };
     getVisitor();
-  }, []);
+  }, [visitorCollectionRef]);
 
   const updateVisitor = async (visitor_id, visitorCount) => {
     const visitorDoc = doc(db, "visitor_counter", visitor_id);

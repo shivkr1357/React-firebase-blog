@@ -1,11 +1,7 @@
 import React from "react";
 
 import { auth, provider } from "../firebase-config";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signInWithPopup,
-} from "firebase/auth";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 
 import { useNavigate } from "react-router-dom";
 import { Stack, Box, Typography, TextField, Button } from "@mui/material";

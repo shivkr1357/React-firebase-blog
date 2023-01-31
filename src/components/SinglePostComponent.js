@@ -21,7 +21,7 @@ const SinglePostComponent = () => {
     };
 
     getPosts();
-  }, []);
+  }, [postCollectionRef]);
 
   return (
     <Fragment>

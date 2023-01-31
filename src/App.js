@@ -2,7 +2,6 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import { Box } from "@mui/material";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import AdminDasboard from "./components/Admin/AdminDasboard";
 import AddCategory from "./components/Category/AddCategory";
 import CategoryComponent from "./components/Category/CategoryComponent";
 import UpdateCategory from "./components/Category/UpdateCategory";
@@ -20,7 +19,6 @@ import Javascript from "./pages/Interview Q/Javascript";
 import Node from "./pages/Interview Q/Node";
 import React from "./pages/Interview Q/ReactFile";
 import Login from "./pages/Login";
-import NotFound from "./pages/NotFound";
 import { PrivateRoute } from "./pages/PrivateRoutes/PrivateRoutes";
 import Register from "./pages/Register";
 import Write from "./pages/Write";
@@ -38,13 +36,13 @@ const App = () => {
     <Router>
       <ThemeProvider theme={darkTheme}>
         <Box bgcolor={"background.default"} color={"text.primary"}>
+          <Navbar
+            isAuth={isAuth}
+            setIsAuth={setIsAuth}
+            mode={mode}
+            setMode={setMode}
+          />
           <Routes>
-            <Navbar // This is showing in all routes nested inside it
-              isAuth={isAuth}
-              setIsAuth={setIsAuth}
-              mode={mode}
-              setMode={setMode}
-            />
             <Route>
               <Route
                 exact
