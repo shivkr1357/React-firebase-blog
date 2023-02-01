@@ -21,7 +21,7 @@ import { useNavigate } from "react-router-dom";
 import SmartText from "../helpers/SmartText";
 import { capitalize } from "../helpers/Capitalize";
 
-const HomeComponent = ({ setIsAuth, mode, setMode }) => {
+const HomeComponent = () => {
   const [postList, setPostList] = useState([]);
 
   const postCollectionRef = query(
@@ -46,7 +46,7 @@ const HomeComponent = ({ setIsAuth, mode, setMode }) => {
       flex={4}
       sx={{ padding: { xs: "0", sm: "0px 20px ", marginTop: "10px" } }}>
       {postList ? (
-        postList.map((post, key) => {
+        postList.map((post) => {
           var creation = new Date(post.created.seconds * 1000);
           const formattedDate = creation.toLocaleDateString("en-IN");
           const formattedTime = creation.toLocaleString("en-IN", {
@@ -60,6 +60,7 @@ const HomeComponent = ({ setIsAuth, mode, setMode }) => {
               key={post.id}
               sx={{ marginBottom: "20px", boxShadow: "-moz-initial" }}>
               <CardHeader
+                key={post.id}
                 avatar={
                   <Avatar sx={{ bgcolor: "red" }} aria-label="question">
                     {Array.from(post.title)[0]}
@@ -67,11 +68,7 @@ const HomeComponent = ({ setIsAuth, mode, setMode }) => {
                 }
                 action={
                   <IconButton aria-label="settings">
-                    <MoreVertIcon
-                      onClick={() => {
-                        navigate("/");
-                      }}
-                    />
+                    <MoreVertIcon />
                   </IconButton>
                 }
                 title={post.title}
@@ -87,12 +84,6 @@ const HomeComponent = ({ setIsAuth, mode, setMode }) => {
                   fontWeight: 600,
                 }}
               />
-              {/* <CardMedia
-              component="img"
-              height="20%"
-              // image={photo}
-              alt="Paella dish"
-            /> */}
               <Stack
                 direction="row"
                 sx={{
@@ -133,13 +124,6 @@ const HomeComponent = ({ setIsAuth, mode, setMode }) => {
                 <IconButton aria-label="share">
                   <ShareIcon />
                 </IconButton>
-                {/*  <ExpandMore
-            expand={expanded}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          {/* </ExpandMore>  */}
               </CardActions>
             </Card>
           );

@@ -1,7 +1,6 @@
 import { Box, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+
 import {
   addDoc,
   collection,
@@ -19,7 +18,6 @@ const LandingPage = () => {
   const visitorCollectionRef = collection(db, "visitor_counter");
 
   const addVisitor = async () => {
-    console.log("here in add");
     await addDoc(visitorCollectionRef, {
       visitorCount: visitor + 1,
       created: serverTimestamp(),
@@ -39,7 +37,7 @@ const LandingPage = () => {
       }
     };
     getVisitor();
-  }, [visitorCollectionRef]);
+  }, []);
 
   const updateVisitor = async (visitor_id, visitorCount) => {
     const visitorDoc = doc(db, "visitor_counter", visitor_id);
@@ -65,7 +63,7 @@ const LandingPage = () => {
         sx={{
           backgroundImage: `linear-gradient(to right, #9900ff, #cc80ff)`,
           width: "100%",
-          height: 600,
+          height: "100%",
           backgroundRepeat: "no-repeat",
           backgroundColor: "black",
           backgroundPosition: "center",
