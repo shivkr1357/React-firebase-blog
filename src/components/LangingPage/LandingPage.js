@@ -12,8 +12,11 @@ import {
 import { db } from "../../firebase-config";
 import Services from "./Services";
 import InterviewLinks from "./InterviewLinks";
+import { motion, useScroll } from "framer-motion";
+import "./landingPage.css";
 
 const LandingPage = () => {
+  const { scrollYProgress } = useScroll();
   const [visitor, setVisitor] = useState(0);
   const visitorCollectionRef = collection(db, "visitor_counter");
 
@@ -47,6 +50,10 @@ const LandingPage = () => {
 
   return (
     <Box>
+      <motion.div
+        className="progress-bar"
+        style={{ scaleX: scrollYProgress }}
+      />
       <Typography
         variant="h1"
         sx={{
@@ -69,14 +76,23 @@ const LandingPage = () => {
           backgroundPosition: "center",
           backgroundSize: "cover",
           display: "flex",
+          flexDirection: "column",
           justifyContent: "center",
+          alignItems: "center",
         }}>
-        <Box
-          sx={{
+        <motion.div
+          style={{
             width: { xs: "100%", sm: "50%", md: "40%" },
             padding: { xs: 2, sm: 3, md: 5 },
           }}>
           <InterviewLinks />
+        </motion.div>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+          }}>
           <Services />
         </Box>
       </Box>

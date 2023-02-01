@@ -3,53 +3,55 @@ import { motion, Variants } from "framer-motion";
 import "./services.css";
 
 const Services = () => {
-  const hue = (h) => `hsl(${h}, 100%, 50%)`;
   const cardVariants = {
     offscreen: {
-      y: 300,
+      x: -300,
     },
     onscreen: {
-      y: 50,
-      rotate: -10,
+      x: 10,
+      rotate: -2,
       transition: {
         type: "spring",
         bounce: 0.4,
-        duration: 0.8,
+        duration: 0.9,
       },
     },
   };
-  function Card({ emoji, hueA, hueB }) {
-    const background = `linear-gradient(306deg, ${hue(hueA)}, ${hue(hueB)})`;
-
+  function Card({ emoji }) {
     return (
       <motion.div
         className="card-container"
         initial="offscreen"
         whileInView="onscreen"
         viewport={{ once: true, amount: 0.8 }}>
-        <div className="splash" style={{ background }} />
-        <motion.div className="card" variants={cardVariants}>
+        <div className="splash" />
+        <motion.div
+          className="card"
+          variants={cardVariants}
+          style={{
+            backgroundImage: `linear-gradient(to left top, red, white)`,
+            padding: "5px",
+          }}>
           {emoji}
         </motion.div>
       </motion.div>
     );
   }
-  const food = [
-    ["🍅", 340, 10],
-    ["🍊", 20, 40],
-    ["🍋", 60, 90],
-    ["🍐", 80, 120],
-    ["🍏", 100, 140],
-    ["🫐", 205, 245],
-    ["🍆", 260, 290],
-    ["🍇", 290, 320],
-  ];
-
   return (
-    <div>
-      {food.map(([emoji, hueA, hueB]) => (
-        <Card emoji={emoji} hueA={hueA} hueB={hueB} key={emoji} />
-      ))}
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        padding: "10px",
+        flexWrap: "wrap",
+        paddingBottom: "50px",
+      }}>
+      <Card emoji={"Web Dev"} key={"dev"} />
+      <Card emoji={"Interview"} key={"interview"} />
+      <Card emoji={"Youtube"} key={"youtube"} />
+      <Card emoji={"Mobile Dev"} key={"mob"} />
+      <Card emoji={"Facebook"} key={"fb"} />
+      <Card emoji={"Portfolio"} key={"port"} />
     </div>
   );
 };
