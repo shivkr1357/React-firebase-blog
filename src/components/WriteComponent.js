@@ -56,7 +56,7 @@ const WriteComponent = ({ isAuth }) => {
       setCategory(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getAllCategory();
-  }, [categoryCollectionRef, navigate]);
+  }, [categoryCollectionRef]);
 
   return (
     <Box flex={4} sx={{ padding: { xs: "0", sm: "50px 20px " } }}>

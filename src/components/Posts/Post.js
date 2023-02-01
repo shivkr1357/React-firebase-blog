@@ -51,7 +51,7 @@ const Post = () => {
     };
 
     getPosts();
-  }, [postCollectionRef]);
+  }, []);
 
   return (
     <Fragment>
